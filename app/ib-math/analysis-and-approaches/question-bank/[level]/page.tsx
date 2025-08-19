@@ -29,9 +29,11 @@ async function getData(level: Level) {
 }
 
 export default async function Page({ params }: { params: Promise<{ level: Level }> }) {
-    const topics = await getData('sl'); // Default to 'sl' for initial render
     // Get the level from params
     const { level } = await params;
+
+    // Fetch the topics based on the level
+    const topics = await getData(level);
 
     const hero = (
         <section className="bg-lucian-50 bg-[#EAF4FF]">
