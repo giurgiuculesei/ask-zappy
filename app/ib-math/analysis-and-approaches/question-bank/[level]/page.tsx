@@ -2,7 +2,7 @@ import { headers } from 'next/headers';
 import Image from 'next/image'
 import Link from 'next/link';
 
-export const revalidate = 60 * 60 * 24; // 24h; change if needed
+export const revalidate = 86400; // 24h; change if needed
 export const dynamicParams = false;     // we only allow 'sl' and 'hl'
 
 export async function generateStaticParams() {
