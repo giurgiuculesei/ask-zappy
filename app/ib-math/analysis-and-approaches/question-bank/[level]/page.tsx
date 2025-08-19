@@ -20,7 +20,7 @@ async function getBaseUrl() {
 async function getData(level: Level) {
     const baseUrl = await getBaseUrl();
 
-    const res = await fetch(`${baseUrl}//api/ib-math/analysis-and-approaches/question-bank/topic`, {
+    const res = await fetch(`${baseUrl}//api/ib-math/analysis-and-approaches/question-bank/${level}/topic`, {
         // Cache the result and revalidate on the schedule above
         next: { revalidate },
     });
@@ -31,7 +31,7 @@ async function getData(level: Level) {
 export default async function Page({ params }: { params: Promise<{ level: Level }> }) {
     const topics = await getData('sl'); // Default to 'sl' for initial render
     // Get the level from params
-    let { level } = await params;
+    const { level } = await params;
 
     const hero = (
         <section className="bg-lucian-50 bg-[#EAF4FF]">
@@ -106,7 +106,12 @@ export default async function Page({ params }: { params: Promise<{ level: Level 
         // Show cards if selected level is included
         return (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {items.map((item: any) => (
+                {items.map((item: {
+                    title: string
+                    desc: string
+                    levels: Level[]
+                    free?: boolean
+                }) => (
                     <article key={item.title} className="relative rounded-2xl h-full flex flex-col border border-slate-200 bg-white p-5 shadow-card">
                         {item.free && (
                             <span aria-label="Free" title="Free" className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-blue-600 text-white grid place-items-center ring-4 ring-white shadow-md">
