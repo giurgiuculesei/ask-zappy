@@ -1,3 +1,5 @@
+import { config } from '@/lib/config';
+import { Metadata } from 'next';
 import { headers } from 'next/headers';
 import Image from 'next/image'
 import Link from 'next/link';
@@ -9,18 +11,20 @@ export async function generateStaticParams() {
     return [{ level: 'sl' }, { level: 'hl' }];
 }
 
-type Level = 'sl' | 'hl';
-
-async function getBaseUrl() {
-    const host = (await headers()).get("host")!;
-    const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
-    return `${protocol}://${host}`;
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ level: Level }>;
+}): Promise<Metadata> {
+    const { level } = await params;
+    return {
+        title: `Analysis and Approaches ${level.toUpperCase()} topics`,
+        description: `Daily-updated IB Mathematics Analysis & Approaches ${level === 'sl' ? 'Standard Level (SL)' : 'Higher Level (HL)'} topics.`,
+    };
 }
 
 async function getData(level: Level) {
-    const baseUrl = await getBaseUrl();
-
-    const res = await fetch(`${baseUrl}//api/ib-math/analysis-and-approaches/question-bank/${level}/topic`, {
+    const res = await fetch(`${config.appUrl}/api/ib-math/analysis-and-approaches/question-bank/${level}/topic`, {
         // Cache the result and revalidate on the schedule above
         next: { revalidate },
     });
