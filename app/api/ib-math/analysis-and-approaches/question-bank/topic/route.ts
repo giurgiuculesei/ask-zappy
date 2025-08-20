@@ -1,17 +1,7 @@
 import { NextResponse } from 'next/server';
 
-type Level = 'sl' | 'hl';
-
-const topics: Array<{
-    section: number
-    title: string
-    items: Array<{
-        title: string
-        desc: string
-        levels: Level[]
-        free?: boolean
-    }>
-}> = [
+const topics: Array<Topic>
+    = [
         {
             section: 1,
             title: 'Number & Algebra',
@@ -34,29 +24,9 @@ const topics: Array<{
                 { title: 'Exponent–Log Functions', desc: 'Exponential & logarithmic graphs, asymptotes, applications…', levels: ['sl', 'hl'], free: true },
                 { title: 'Transformations', desc: 'Translations, reflections, stretches, composite transformations…', levels: ['sl', 'hl'], free: true }
             ]
-        }
+        },
     ]
 
-
-export async function GET(
-    _req: Request,
-    context: { params: Promise<{ level: Level }> }
-) {
-    const { level } = await context.params;
-
-    if (level !== "sl" && level !== "hl") {
-        return NextResponse.json(
-            { error: "Invalid level. Use 'sl' or 'hl'." },
-            { status: 400 }
-        );
-    }
-
-
-    // Filter topics based on the level
-    const filteredTopics = topics.map(topic => ({
-        ...topic,
-        items: topic.items.filter(item => item.levels.includes(level!))
-    })).filter(topic => topic.items.length > 0);
-
-    return NextResponse.json(filteredTopics);
+export async function GET() {
+    return NextResponse.json(topics);
 }
