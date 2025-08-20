@@ -13,11 +13,8 @@ export default function Topics({
     const [level, setLevel] = useState<Level>(initialLevel);
     const [topics, setTopics] = useState<Array<Topic>>([]);
 
-
     // If the route changes (back/forward), keep state in sync with prop
-    useEffect(() => {
-        setLevel(initialLevel), [initialLevel]
-    }, []);
+    useEffect(() => setLevel(initialLevel), [initialLevel]);
 
     useEffect(() => {
         // Filter topics based on the level
@@ -33,9 +30,6 @@ export default function Topics({
         if (newLevel === level) return;
 
         setLevel(newLevel);
-
-        console.log(`Changing level to ${newLevel}`);
-
 
         window.history.replaceState(
             null,

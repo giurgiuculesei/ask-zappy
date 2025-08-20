@@ -1,5 +1,5 @@
 import Topics from '@/components/ib-math/topics';
-import { config } from '@/lib/config';
+import { getTopics } from '@/lib/ib-math/topics';
 import { Metadata } from 'next';
 
 export const revalidate = 86400; // 24h; change if needed
@@ -21,21 +21,12 @@ export async function generateMetadata({
     };
 }
 
-async function getData() {
-    const res = await fetch(`${config.appUrl}/api/ib-math/analysis-and-approaches/question-bank/topic`, {
-        // Cache the result and revalidate on the schedule above
-        next: { revalidate },
-    });
-    if (!res.ok) throw new Error('Failed to load content');
-    return res.json();
-}
-
 export default async function Page({ params }: { params: Promise<{ level: Level }> }) {
     // Get the level from params
     const { level } = await params;
 
     // Fetch the topics based on the level
-    const topics = await getData();
+    const topics = await getTopics();
 
     return (
         <Topics initialLevel={level} initialTopics={topics} />
