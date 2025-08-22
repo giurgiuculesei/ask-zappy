@@ -1,10 +1,19 @@
+type Level = 'sl' | 'hl';
+
+type SubTopicLevel = {
+    description: string;
+    level: Level;
+}
+
+type SubTopic = {
+    name: string;
+    order: number;
+    levels: SubTopicLevel[];
+    free?: boolean;
+}
+
 type Topic = {
-    section: number
-    title: string
-    items: Array<{
-        title: string
-        desc: string
-        levels: Level[]
-        free?: boolean
-    }>
+    name: string;
+    order: number;
+    subtopics?: SubTopic[];
 }

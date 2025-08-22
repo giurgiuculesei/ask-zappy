@@ -13,15 +13,23 @@ export default function Topics({
     const [level, setLevel] = useState<Level>(initialLevel);
     const [topics, setTopics] = useState<Array<Topic>>([]);
 
-    // If the route changes (back/forward), keep state in sync with prop
-    useEffect(() => setLevel(initialLevel), [initialLevel]);
+    const createFilteredTopics = (initialTopics: Array<Topic>, level: Level) => {
+        // Filter topics based on the level
+        const filteredTopics = initialTopics
+            .map(t => ({
+                ...t,
+                subtopics: t.subtopics?.filter(s =>
+                    s.levels.some(l => l.level === level.toUpperCase()) ?? false
+                ),
+            }))
+            .filter(t => (t.subtopics?.length ?? 0) > 0);
+
+        return filteredTopics;
+    };
 
     useEffect(() => {
         // Filter topics based on the level
-        const filteredTopics = initialTopics.map(topic => ({
-            ...topic,
-            items: topic.items.filter(item => item.levels.includes(level!))
-        })).filter(topic => topic.items.length > 0);
+        const filteredTopics = createFilteredTopics(initialTopics, level);
 
         setTopics(filteredTopics);
     }, [initialTopics, level]);
@@ -30,6 +38,10 @@ export default function Topics({
         if (newLevel === level) return;
 
         setLevel(newLevel);
+
+        // Filter topics based on the level
+        const filteredTopics = createFilteredTopics(initialTopics, newLevel);
+        setTopics(filteredTopics);
 
         window.history.replaceState(
             null,
@@ -105,26 +117,21 @@ export default function Topics({
         </section >
     )
 
-    const renderCards = (items: typeof topics[number]['items']) => {
+    const renderCards = (subtopics: SubTopic[]) => {
         // Show cards if selected level is included
         return (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {items.map((item: {
-                    title: string
-                    desc: string
-                    levels: Level[]
-                    free?: boolean
-                }) => (
-                    <article key={item.title} className="relative rounded-2xl h-full flex flex-col border border-slate-200 bg-white p-5 shadow-card">
-                        {item.free && (
+                {subtopics.map((subTopic: SubTopic) => (
+                    <article key={subTopic.name} className="relative rounded-2xl h-full flex flex-col border border-slate-200 bg-white p-5 shadow-card">
+                        {subTopic.free && (
                             <span aria-label="Free" title="Free" className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-blue-600 text-white grid place-items-center ring-4 ring-white shadow-md">
                                 <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                     <path strokeWidth={2} d="M7 11V9a5 5 0 1 1 10 0v2M5 11h14v9H5z" />
                                 </svg>
                             </span>
                         )}
-                        <h3 className="text-lg font-semibold">{item.title}</h3>
-                        <p className="mt-1 text-sm text-slate-600">{item.desc}</p>
+                        <h3 className="text-lg font-semibold">{subTopic.name}</h3>
+                        <p className="mt-1 text-sm text-slate-600">{subTopic.levels.filter(l => l.level === level.toUpperCase())[0].description}</p>
                         <div className="mt-auto pt-5">
                             <a href="#" className="inline-flex items-center justify-center w-full rounded-full border border-slate-300 px-4 py-2.5 text-sm font-medium hover:bg-slate-50">Open Study</a>
                         </div>
@@ -139,26 +146,30 @@ export default function Topics({
             {hero}
             {levelFilter}
 
-            {topics?.length > 0 && (
-                <>
-                    <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-                        <p className="text-sm text-slate-500">Topic 1</p>
-                        <h2 className="text-2xl font-semibold tracking-tight mt-1">Number &amp; Algebra</h2>
+            {topics.map((t, i) => {
+                const Body = (
+                    <>
+                        <p className="text-sm text-slate-500">Topic {t.order}</p>
+                        <h2 className="text-2xl font-semibold tracking-tight mt-1">{t.name}</h2>
+                        <div className="mt-6">{renderCards(t.subtopics)}</div>
+                    </>
+                );
 
-                        <div className="mt-6">{renderCards(topics[0].items.slice(0, 3))}</div>
-                        <div className="mt-4">{renderCards(topics[0].items.slice(3))}</div>
+                return i % 2 === 0 ? (
+                    <main
+                        key={`topic-${t.order}`}
+                        className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10"
+                    >
+                        {Body}
                     </main>
-
-                    <section className="bg-slate-50">
+                ) : (
+                    <section key={`topic-${t.order}`} className="bg-slate-50">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-                            <p className="text-sm text-slate-500">Topic 2</p>
-                            <h2 className="text-2xl font-semibold tracking-tight mt-1">Functions</h2>
-                            <div className="mt-6">{renderCards(topics[1].items.slice(0, 3))}</div>
-                            <div className="mt-4">{renderCards(topics[1].items.slice(3))}</div>
+                            {Body}
                         </div>
                     </section>
-                </>
-            )}
+                );
+            })}
         </>
     )
 };

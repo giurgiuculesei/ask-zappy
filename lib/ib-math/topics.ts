@@ -1,32 +1,45 @@
 'use server';
 
-const topics: Array<Topic>
-    = [
-        {
-            section: 1,
-            title: 'Number & Algebra',
-            items: [
-                { title: 'Topic 1 All', desc: 'All questions in Topic 1 Number & Algebra', levels: ['sl', 'hl'] },
-                { title: 'Sequences & Series', desc: 'Arithmetic/Geometric, Sigma notation, Applications, Compound interest…', levels: ['sl', 'hl'] },
-                { title: 'Exponents & Logs', desc: 'Exponent & log laws, solving exponential & logarithmic equations…', levels: ['sl', 'hl'] },
-                { title: 'Binomial Theorem', desc: 'Binomial expansion, Pascal’s triangle & the binomial coefficient nCr…', levels: ['hl'] },
-                { title: 'Proofs', desc: 'Simple deductive proofs, LHS to RHS proofs…', levels: ['hl'] }
-            ]
-        },
-        {
-            section: 2,
-            title: 'Functions',
-            items: [
-                { title: 'Topic 2 All', desc: 'All questions in Topic 2 Functions', levels: ['sl', 'hl'], free: true },
-                { title: 'Properties of Functions', desc: 'Domain & range, composite & inverse functions, intercepts, sketching…', levels: ['sl', 'hl'], free: true },
-                { title: 'Quadratics', desc: 'Equations, factorising, completing the square, discriminant, vertex…', levels: ['sl', 'hl'], free: true },
-                { title: 'Rational Functions', desc: 'Asymptotes, intercepts, sketching, reciprocal functions…', levels: ['hl'], free: true },
-                { title: 'Exponent–Log Functions', desc: 'Exponential & logarithmic graphs, asymptotes, applications…', levels: ['sl', 'hl'], free: true },
-                { title: 'Transformations', desc: 'Translations, reflections, stretches, composite transformations…', levels: ['sl', 'hl'], free: true }
-            ]
-        },
-    ]
+import { driver } from "../neo4j/neo4j";
 
-export async function getTopics() {
-    return topics;
+export async function getTopics(): Promise<Topic[]> {
+    console.log(`getTopics enter`);
+
+    const session = driver.session({ defaultAccessMode: "READ" });
+    try {
+        const res = await session.run(
+            `
+        MATCH (:QuestionBank {id: $qbId})-[:HAS_TOPIC]->(t:Topic)
+        WITH t
+        CALL (t) {
+        WITH t
+        MATCH (t)-[:HAS_SUB_TOPIC]->(s:SubTopic)
+        WITH s
+        ORDER BY s.order
+        CALL (s) {
+            WITH s
+            OPTIONAL MATCH (s)-[:HAS_SUB_TOPIC_LEVEL]->(stl:SubTopicLevel)-[:HAS_LEVEL]->(lvl:Level)
+            WITH stl, lvl
+            ORDER BY lvl.id
+            RETURN collect(stl { .description, level: lvl.id }) AS levels
+        }
+        RETURN collect(
+                s {.name, .order, levels: levels }
+                ) AS subtopics
+        }
+        WITH t, subtopics
+        ORDER BY t.order
+        RETURN t {.name, .order, subtopics: subtopics } AS topic;
+        `,
+            { qbId: "1" }
+        );
+
+        console.log(`getTopics exit - result lenght:`, res.records.length);
+
+        const topics = res.records.map(r => r.get("topic")) as Topic[];
+        return topics;
+
+    } finally {
+        await session.close();
+    }
 }

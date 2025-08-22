@@ -1,1 +1,0 @@
-type Level = 'sl' | 'hl';
