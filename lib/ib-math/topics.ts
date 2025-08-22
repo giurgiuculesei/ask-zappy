@@ -34,7 +34,7 @@ export async function getTopics(): Promise<Topic[]> {
             { qbId: "1" }
         );
 
-        console.log(`getTopics exit - result lenght:`, res.records.length);
+        console.log(`getTopics exit - result length:`, res.records.length);
 
         const topics = res.records.map(r => r.get("topic")) as Topic[];
         return topics;

@@ -15,5 +15,5 @@ type SubTopic = {
 type Topic = {
     name: string;
     order: number;
-    subtopics?: SubTopic[];
+    subtopics: SubTopic[];
 }
