@@ -39,7 +39,7 @@ export default async function QuestionsPage({ params }: { params: Promise<{ leve
                 </div>
             </header>
 
-            <div className="sticky top-0 z-30 border-b border-slate-200 bg-slate-50/80 backdrop-blur">
+            <div className="top-0 z-30 border-b border-slate-200 bg-slate-50/80 backdrop-blur">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="py-3 flex flex-wrap items-center gap-3 justify-center xl:justify-between">
 

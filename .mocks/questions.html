@@ -239,6 +239,101 @@
 
             </div>
         </section>
+
+        <section id="q2" class="mb-6">
+            <h2 class="text-base font-semibold text-slate-700 mb-3">Question 2</h2>
+
+            <!-- Grid container ensures equal height -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
+
+                <!-- Left panel -->
+                <article class="lg:col-span-9 rounded-2xl border border-slate-200 bg-white shadow-card flex flex-col">
+                    <div class="relative flex items-center justify-between px-4 py-3 border-b border-slate-200">
+                        <!-- Left: NO CALCULATOR -->
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="text-[11px] font-semibold rounded-full bg-slate-100 px-2 py-1 text-slate-600 border border-slate-200">
+                                NO CALCULATOR
+                            </span>
+                        </div>
+
+                        <!-- Middle: Difficulty -->
+                        <div class="absolute left-1/2 -translate-x-1/2 flex items-center gap-2">
+                            <span class="text-sm text-emerald-600 font-medium">Mild</span>
+                            <span class="inline-flex items-center gap-1">
+                                <span class="dot bg-emerald-600"></span>
+                                <span class="dot bg-emerald-600"></span>
+                                <span class="dot bg-slate-300"></span>
+                                <span class="dot bg-slate-300"></span>
+                            </span>
+                        </div>
+
+                        <!-- Right: Action icons -->
+                        <div class="flex items-center gap-2 text-slate-400">
+                            <!-- Bookmark -->
+                            <button class="group relative p-1.5 rounded-md hover:bg-slate-100" aria-label="Bookmark">
+                                <svg viewBox="0 0 24 24" class="size-5">
+                                    <path fill="currentColor" d="M6 2h12a1 1 0 0 1 1 1v19l-7-3-7 3V3a1 1 0 0 1 1-1z" />
+                                </svg>
+                                <span
+                                    class="tooltip absolute -bottom-9 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-1 text-xs rounded-md bg-slate-800 text-white opacity-0 group-hover:opacity-100 transition">
+                                    Bookmark
+                                </span>
+                            </button>
+
+                            <!-- Mark as done -->
+                            <button class="group relative p-1.5 rounded-md hover:bg-slate-100"
+                                aria-label="Mark as done">
+                                <svg viewBox="0 0 24 24" class="size-5">
+                                    <path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                                </svg>
+                                <span
+                                    class="tooltip absolute -bottom-9 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-1 text-xs rounded-md bg-slate-800 text-white opacity-0 group-hover:opacity-100 transition">
+                                    Mark as Complete
+                                </span>
+                            </button>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="px-5 py-5 flex-1">
+                        <p class="text-sm text-slate-500 mb-2">[Maximum mark: 4]</p>
+                        <p class="leading-relaxed">
+                            Expand <span class="font-mono">(2x + 1)<sup>4</sup></span> in descending powers of
+                            <em>x</em>
+                            and simplify your answer.
+                        </p>
+                        <p class="mt-3">even more text bal vla</p>
+                    </div>
+                </article>
+
+                <!-- Right panel -->
+                <aside class="lg:col-span-3 h-full">
+                    <div
+                        class="h-full rounded-2xl border border-slate-200 bg-white shadow-card p-3 flex flex-col gap-2">
+
+                        <!-- Mark Scheme (light blue) -->
+                        <button id="open-mark-scheme" class="w-full block rounded-xl px-3 py-2 text-sm font-medium
+         text-brand-800 bg-brand-100 border border-brand-200
+         hover:bg-brand-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/60
+         text-center lg:flex lg:items-center lg:justify-between lg:text-left">
+                            <span class="w-full">Mark Scheme</span>
+                        </button>
+
+                        <!-- Video Solutions (white) -->
+                        <button id="open-video-solution" class="w-full block rounded-xl px-3 py-2 text-sm font-medium
+         text-slate-800 bg-white border border-slate-200
+         hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300/60
+         text-center lg:flex lg:items-center lg:justify-between lg:text-left">
+                            <span class="w-full">Video Solutions</span>
+                        </button>
+                    </div>
+                </aside>
+
+            </div>
+        </section>
     </main>
 
     <footer class="border-t border-slate-200 bg-white">
