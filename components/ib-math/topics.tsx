@@ -53,7 +53,7 @@ export default function Topics({
     const hero = (
         <section className="bg-lucian-50 bg-[#EAF4FF]">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-                <nav aria-label="Breadcrumb">
+                {/* <nav aria-label="Breadcrumb">
                     <ol className="flex flex-wrap items-center gap-2 text-sm">
                         <li>
                             <a href="#" className="inline-flex items-center gap-2 rounded-full bg-white border border-slate-200 px-3 py-1.5 text-slate-700 hover:bg-slate-50">
@@ -74,7 +74,7 @@ export default function Topics({
                             </li>
                         ))}
                     </ol>
-                </nav>
+                </nav> */}
 
                 <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center">
                     <div className="md:col-span-2">

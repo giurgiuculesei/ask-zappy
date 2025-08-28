@@ -12,6 +12,11 @@ export default function Page() {
           className="inline-flex items-center justify-center mt-6 rounded-full border border-slate-300 px-4 py-2.5 text-sm font-medium hover:bg-slate-50">
           Go to IB Math Analysis and Approaches Question Bank
         </Link>
+
+        <Link href="/ib-math/analysis-and-approaches/question-bank/sl/number-and-algebra/all-concepts"
+          className="inline-flex items-center justify-center mt-6 rounded-full border border-slate-300 px-4 py-2.5 text-sm font-medium hover:bg-slate-50">
+          Go to IB Math Analysis and Approaches - Numbers and Algebra - All Concepts - Questions
+        </Link>
       </main>
     </>
   )

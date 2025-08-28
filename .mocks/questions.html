@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IB Mathematics AA SL — Questionbank</title>
+    <meta name="description" content="IB Mathematics: Analysis & Approaches (SL) — questionbank by topic." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef7ff',
+                            100: '#d8edff',
+                            200: '#bfe1ff',
+                            300: '#9dd0ff',
+                            400: '#68b5ff',
+                            500: '#3499ff',
+                            600: '#157eed',
+                            700: '#1166c3',
+                            800: '#12529a',
+                            900: '#143f73'
+                        }
+                    },
+                    boxShadow: {
+                        card: '0 1px 2px rgba(0,0,0,0.05), 0 10px 20px rgba(0,0,0,0.04)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 9999px;
+            display: inline-block;
+        }
+
+        .toggle-group input:checked+span {
+            @apply bg-white text-slate-900 shadow-sm;
+        }
+
+        /* Hide hover-tooltips on phones/tablets (no hover / coarse pointer) */
+        @media (hover: none),
+        (pointer: coarse) {
+            .tooltip {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+    <!-- Top bar -->
+    <header class="bg-gradient-to-b from-brand-50 to-white border-b border-slate-200">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+            <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">IB Mathematics AA SL —
+                Questionbank</h1>
+            <p class="mt-2 text-lg text-slate-600">Topic 1 All — Number & Algebra</p>
+            <p class="mt-1 text-sm text-slate-500">All Questions for Topic 1 (Number & Algebra). Sequences & Series,
+                Exponents & Logs, Binomial Theorem, Proofs</p>
+        </div>
+    </header>
+
+    <!-- Filter bar -->
+    <div class="sticky top-0 z-30 border-b border-slate-200 bg-slate-50/80 backdrop-blur">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <!-- <div class="py-3 flex flex-wrap items-center justify-center gap-3"> -->
+            <div class="py-3 flex flex-wrap items-center gap-3 justify-center xl:justify-between">
+                <!-- Paper toggle -->
+                <div class="flex bg-slate-100 rounded-full p-1 border border-slate-200 max-w-xs w-full sm:w-auto">
+                    <label class="relative flex-1 sm:flex-none"><input type="radio" name="paper" class="sr-only peer"
+                            checked><span
+                            class="block text-center px-3 py-1.5 rounded-full text-sm cursor-pointer text-slate-700 peer-checked:bg-white peer-checked:text-slate-900 peer-checked:shadow">All</span></label>
+                    <label class="relative flex-1 sm:flex-none"><input type="radio" name="paper"
+                            class="sr-only peer"><span
+                            class="block text-center px-3 py-1.5 rounded-full text-sm cursor-pointer text-slate-700 peer-checked:bg-white peer-checked:text-slate-900 peer-checked:shadow">Paper
+                            1</span></label>
+                    <label class="relative flex-1 sm:flex-none"><input type="radio" name="paper"
+                            class="sr-only peer"><span
+                            class="block text-center px-3 py-1.5 rounded-full text-sm cursor-pointer text-slate-700 peer-checked:bg-white peer-checked:text-slate-900 peer-checked:shadow">Paper
+                            2</span></label>
+                </div>
+
+                <!-- Difficulty toggle -->
+                <div class="flex bg-slate-100 rounded-full p-1 border border-slate-200 max-w-xs w-full sm:w-auto">
+                    <label class="relative flex-1 sm:flex-none"><input type="radio" name="difficulty"
+                            class="sr-only peer" checked><span
+                            class="block text-center px-3 py-1.5 rounded-full text-sm cursor-pointer text-slate-700 peer-checked:bg-white peer-checked:text-slate-900 peer-checked:shadow">All</span></label>
+                    <label class="relative flex-1 sm:flex-none"><input type="radio" name="difficulty"
+                            class="sr-only peer"><span
+                            class="block text-center px-3 py-1.5 rounded-full text-sm cursor-pointer text-slate-700 peer-checked:bg-white peer-checked:text-slate-900 peer-checked:shadow">Mild</span></label>
+                    <label class="relative flex-1 sm:flex-none"><input type="radio" name="difficulty"
+                            class="sr-only peer"><span
+                            class="block text-center px-3 py-1.5 rounded-full text-sm cursor-pointer text-slate-700 peer-checked:bg-white peer-checked:text-slate-900 peer-checked:shadow">Medium</span></label>
+                    <label class="relative flex-1 sm:flex-none"><input type="radio" name="difficulty"
+                            class="sr-only peer"><span
+                            class="block text-center px-3 py-1.5 rounded-full text-sm cursor-pointer text-slate-700 peer-checked:bg-white peer-checked:text-slate-900 peer-checked:shadow">Spicy</span></label>
+                </div>
+
+                <!-- View toggle -->
+                <div class="flex bg-slate-100 rounded-full p-1 border border-slate-200 max-w-md w-full sm:w-auto">
+                    <label class="relative flex-1 sm:flex-none"><input type="radio" name="view" class="sr-only peer"
+                            checked><span
+                            class="block text-center px-3 py-1.5 rounded-full text-sm cursor-pointer text-slate-700 peer-checked:bg-white peer-checked:text-slate-900 peer-checked:shadow">All</span></label>
+                    <label class="relative flex-1 sm:flex-none"><input type="radio" name="view"
+                            class="sr-only peer"><span
+                            class="block text-center px-3 py-1.5 rounded-full text-sm cursor-pointer text-slate-700 peer-checked:bg-white peer-checked:text-slate-900 peer-checked:shadow">Bookmarks</span></label>
+                    <label class="relative flex-1 sm:flex-none"><input type="radio" name="view"
+                            class="sr-only peer"><span
+                            class="block text-center px-3 py-1.5 rounded-full text-sm cursor-pointer text-slate-700 peer-checked:bg-white peer-checked:text-slate-900 peer-checked:shadow">Complete</span></label>
+                    <label class="relative flex-1 sm:flex-none"><input type="radio" name="view"
+                            class="sr-only peer"><span
+                            class="block text-center px-3 py-1.5 rounded-full text-sm cursor-pointer text-slate-700 peer-checked:bg-white peer-checked:text-slate-900 peer-checked:shadow">Incomplete</span></label>
+                </div>
+
+                <!-- Search -->
+                <div class="w-full max-w-md mx-auto xl:w-auto xl:mx-0 xl:ml-auto">
+                    <div class="relative w-full">
+                        <svg class="absolute left-3 top-2.5 h-4 w-4 text-slate-400" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M21 21l-4.35-4.35m1.1-4.4a6.75 6.75 0 11-13.5 0 6.75 6.75 0 0113.5 0z" />
+                        </svg>
+                        <input type="search" placeholder="Search questions (Enter ↵)"
+                            class="w-full xl:w-72 pl-9 pr-3 py-2 rounded-full border border-slate-300 bg-white/90 focus:bg-white outline-none text-sm transition-[width] duration-200 ease-out xl:focus:w-96" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Content -->
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+        <section id="q1" class="mb-6">
+            <h2 class="text-base font-semibold text-slate-700 mb-3">Question 1</h2>
+
+            <!-- Grid container ensures equal height -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
+
+                <!-- Left panel -->
+                <article class="lg:col-span-9 rounded-2xl border border-slate-200 bg-white shadow-card flex flex-col">
+                    <div class="relative flex items-center justify-between px-4 py-3 border-b border-slate-200">
+                        <!-- Left: NO CALCULATOR -->
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="text-[11px] font-semibold rounded-full bg-slate-100 px-2 py-1 text-slate-600 border border-slate-200">
+                                NO CALCULATOR
+                            </span>
+                        </div>
+
+                        <!-- Middle: Difficulty -->
+                        <div class="absolute left-1/2 -translate-x-1/2 flex items-center gap-2">
+                            <span class="text-sm text-emerald-600 font-medium">Mild</span>
+                            <span class="inline-flex items-center gap-1">
+                                <span class="dot bg-emerald-600"></span>
+                                <span class="dot bg-emerald-600"></span>
+                                <span class="dot bg-slate-300"></span>
+                                <span class="dot bg-slate-300"></span>
+                            </span>
+                        </div>
+
+                        <!-- Right: Action icons -->
+                        <div class="flex items-center gap-2 text-slate-400">
+                            <!-- Bookmark -->
+                            <button class="group relative p-1.5 rounded-md hover:bg-slate-100" aria-label="Bookmark">
+                                <svg viewBox="0 0 24 24" class="size-5">
+                                    <path fill="currentColor" d="M6 2h12a1 1 0 0 1 1 1v19l-7-3-7 3V3a1 1 0 0 1 1-1z" />
+                                </svg>
+                                <span
+                                    class="tooltip absolute -bottom-9 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-1 text-xs rounded-md bg-slate-800 text-white opacity-0 group-hover:opacity-100 transition">
+                                    Bookmark
+                                </span>
+                            </button>
+
+                            <!-- Mark as done -->
+                            <button class="group relative p-1.5 rounded-md hover:bg-slate-100"
+                                aria-label="Mark as done">
+                                <svg viewBox="0 0 24 24" class="size-5">
+                                    <path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                                </svg>
+                                <span
+                                    class="tooltip absolute -bottom-9 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-1 text-xs rounded-md bg-slate-800 text-white opacity-0 group-hover:opacity-100 transition">
+                                    Mark as Complete
+                                </span>
+                            </button>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="px-5 py-5 flex-1">
+                        <p class="text-sm text-slate-500 mb-2">[Maximum mark: 4]</p>
+                        <p class="leading-relaxed">
+                            Expand <span class="font-mono">(2x + 1)<sup>4</sup></span> in descending powers of
+                            <em>x</em>
+                            and simplify your answer.
+                        </p>
+                        <p class="mt-3">even more text bal vla</p>
+                    </div>
+                </article>
+
+                <!-- Right panel -->
+                <aside class="lg:col-span-3 h-full">
+                    <div
+                        class="h-full rounded-2xl border border-slate-200 bg-white shadow-card p-3 flex flex-col gap-2">
+
+                        <!-- Mark Scheme (light blue) -->
+                        <button id="open-mark-scheme" class="w-full block rounded-xl px-3 py-2 text-sm font-medium
+         text-brand-800 bg-brand-100 border border-brand-200
+         hover:bg-brand-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/60
+         text-center lg:flex lg:items-center lg:justify-between lg:text-left">
+                            <span class="w-full">Mark Scheme</span>
+                        </button>
+
+                        <!-- Video Solutions (white) -->
+                        <button id="open-video-solution" class="w-full block rounded-xl px-3 py-2 text-sm font-medium
+         text-slate-800 bg-white border border-slate-200
+         hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300/60
+         text-center lg:flex lg:items-center lg:justify-between lg:text-left">
+                            <span class="w-full">Video Solutions</span>
+                        </button>
+                    </div>
+                </aside>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-200 bg-white">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 text-sm text-slate-500">
+            © 2025 IB Math Resources — Demo UI
+        </div>
+    </footer>
+
+
+
+    <!-- Backdrop + Modal -->
+    <div id="mark-scheme-modal" class="fixed inset-0 z-[100] hidden" aria-hidden="true" role="dialog" aria-modal="true">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
+
+        <!-- Modal panel (large + centered) -->
+        <div class="relative mx-auto flex items-center justify-center h-full">
+            <div
+                class="relative w-[96vw] sm:w-[94vw] lg:w-[88vw] max-w-[1200px] h-[88vh] sm:h-[90vh] rounded-2xl bg-white shadow-xl ring-1 ring-black/5 overflow-hidden flex flex-col">
+                <!-- Header -->
+                <div class="flex items-center justify-between px-5 py-4 border-b border-slate-200">
+                    <h3 class="text-base sm:text-lg font-semibold text-slate-900">Question 1</h3>
+                    <!-- keep an 'X' icon for accessibility; backdrop click & ESC also work -->
+                    <button id="close-mark-scheme"
+                        class="p-2 rounded-md text-slate-500 hover:bg-slate-100 hover:text-slate-700"
+                        aria-label="Close modal">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5">
+                            <path fill="currentColor"
+                                d="M6.225 4.811 4.81 6.225 10.586 12l-5.775 5.775 1.414 1.414L12 13.414l5.775 5.775 1.414-1.414L13.414 12l5.775-5.775-1.414-1.414L12 10.586 6.225 4.811z" />
+                        </svg>
+                    </button>
+                </div>
+
+
+                <!-- Body -->
+                <div class="px-5 py-4 overflow-auto flex-1 space-y-6">
+                    <!-- QUESTION -->
+                    <section>
+                        <div id="modal-question-slot" class="prose prose-slate max-w-none">
+
+                            <p class="text-sm text-slate-500 mb-2">[Maximum mark: 4]</p>
+                            <p class="leading-relaxed">
+                                Expand <span class="font-mono">(2x + 1)<sup>4</sup></span> in descending powers of
+                                <em>x</em>
+                                and simplify your answer.
+                            </p>
+                            <p class="mt-3">even more text bal vla</p>
+                        </div>
+                    </section>
+
+
+
+                    <!-- MARK SCHEME -->
+                    <section class="prose prose-slate max-w-none">
+                        <!-- MARK SCHEME header as a separator panel -->
+                        <div class="not-prose -mx-5 mb-4">
+                            <div class="px-5">
+                                <div class="flex items-center gap-2 rounded-lg border border-brand-200 bg-brand-50/70
+                ring-1 ring-inset ring-brand-100 px-4 py-2.5">
+                                    <span class="text-sm sm:text-base font-semibold text-slate-900">Mark Scheme</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p><strong>Method (Binomial Theorem):</strong></p>
+                        <p>\[
+                            (a+b)^4=\binom{4}{0}a^4+\binom{4}{1}a^3b+\binom{4}{2}a^2b^2+\binom{4}{3}ab^3+\binom{4}{4}b^4
+                            \]</p>
+                        <p>Let \(a=2x\), \(b=1\): \((2x+1)^4=16x^4+32x^3+24x^2+8x+1\).</p>
+                        <p class="mt-2"><strong>Answer:</strong> \(\boxed{16x^4 + 32x^3 + 24x^2 + 8x + 1}\)</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+            (function () {
+                const openBtn = document.getElementById('open-mark-scheme');
+                const modal = document.getElementById('mark-scheme-modal');
+                const closeBtn = document.getElementById('close-mark-scheme');
+
+                const open = () => {
+                    modal.classList.remove('hidden');
+                    modal.setAttribute('aria-hidden', 'false');
+                    document.body.classList.add('overflow-hidden');
+                    if (window.MathJax?.typesetPromise) window.MathJax.typesetPromise();
+                };
+
+                const close = () => {
+                    modal.classList.add('hidden');
+                    modal.setAttribute('aria-hidden', 'true');
+                    document.body.classList.remove('overflow-hidden');
+                };
+
+                openBtn?.addEventListener('click', open);
+                closeBtn?.addEventListener('click', close);
+
+                // Click backdrop to close
+                modal?.addEventListener('click', (e) => {
+                    const panel = modal.querySelector('.rounded-2xl.bg-white');
+                    if (panel && !panel.contains(e.target)) close();
+                });
+
+                // ESC to close
+                window.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && !modal.classList.contains('hidden')) close();
+                });
+            })();
+    </script>
+</body>
+
+</html>
