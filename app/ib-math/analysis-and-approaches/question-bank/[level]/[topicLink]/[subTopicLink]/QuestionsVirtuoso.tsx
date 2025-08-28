@@ -54,13 +54,18 @@ export default function QuestionsVirtuoso({
         }
     }, [cursor, endpoint, loading]);
 
+    const MemoRow = useCallback(({ q }: { q: Question }) => <QuestionCard key={q.id} q={q} />, []);
+
     return (
         <Virtuoso
+            computeItemKey={(_, q) => q.id}            // stable keys!
+            overscan={10000}                              // extra px before/after viewport
+            increaseViewportBy={{ top: 10000, bottom: 10000 }} // keep more DOM mounted
+
             useWindowScroll
             data={items}
             endReached={loadMore}
-            overscan={400}
-            itemContent={(index, q) => <QuestionCard q={q} />}
+            itemContent={(_, q) => <MemoRow q={q} />}
         />
     );
 }
