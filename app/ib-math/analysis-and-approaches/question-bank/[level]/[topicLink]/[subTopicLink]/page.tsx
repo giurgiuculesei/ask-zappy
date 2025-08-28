@@ -1,7 +1,8 @@
 import { getQuestionsPage } from "@/lib/ib-math/questions";
 import { getTopicDataByLink } from "@/lib/ib-math/topics";
 import { notFound } from "next/navigation";
-import Questions from "./Questions";
+import QuestionsSSR from "./QuestionsSSR";
+import QuestionsVirtuoso from "./QuestionsVirtuoso";
 
 export default async function QuestionsPage({ params }: { params: Promise<{ level: Level, topicLink: string, subTopicLink: string }> }) {
     const { level, topicLink, subTopicLink } = await params;
@@ -22,6 +23,9 @@ export default async function QuestionsPage({ params }: { params: Promise<{ leve
         after: null,
         limit: 20,
     });
+
+    //const endpoint = `/api/questions?level=${encodeURIComponent(params.level)}&topicLink=${encodeURIComponent(params.topicLink)}&subTopicLink=${encodeURIComponent(params.subTopicLink)}`;
+    const endpoint = `/api/ib-math/question-bank/questions`;
 
     return (
         <>
@@ -133,10 +137,17 @@ export default async function QuestionsPage({ params }: { params: Promise<{ leve
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
 
+            <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+                <noscript>
+                    {/* <PaginationLinks page={pageNum} hasNext={!!initialPage.nextCursor} /> */}
 
-            <Questions items={items} />
+                    <QuestionsSSR data-ssr items={items} />
+                </noscript>
+
+                <QuestionsVirtuoso data-enhanced initialItems={items} initialCursor={nextCursor ?? null} endpoint={endpoint} />
+            </main>
         </>
     );
 }

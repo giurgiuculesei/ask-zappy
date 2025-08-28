@@ -5,7 +5,7 @@ export const revalidate = 60;
 
 export async function GET(req: Request) {
     const url = new URL(req.url);
-    const after = url.searchParams.get('after');
+    const after = url.searchParams.get('cursor');
     const limit = Math.min(Number(url.searchParams.get('limit') ?? 20), 50);
 
     const data = await getQuestionsPage({ after, limit });

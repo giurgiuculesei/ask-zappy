@@ -4,8 +4,7 @@ import "./globals.css";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="h-full overflow-x-clip">
-
+    <html lang="en" className="no-js h-full overflow-x-clip">
       <body className="font-sans antialiased bg-slate-50 text-slate-800 min-h-dvh overflow-x-clip">
         <Header />
         {children}
