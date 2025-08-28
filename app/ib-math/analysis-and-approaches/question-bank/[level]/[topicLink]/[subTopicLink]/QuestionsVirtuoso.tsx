@@ -75,9 +75,9 @@ export default function QuestionsVirtuoso({
             // Append new page, dedup by id
             setItems((prev) => mergeById(prev, page.items));
             setCursor(page.nextCursor ?? null);
-        } catch (e: any) {
+        } catch (e: unknown) {
             // Ignore abort errors on filter switches
-            if (e?.name !== 'AbortError') console.error(e);
+            if (e instanceof DOMException && e.name === 'AbortError') console.error(e);
         } finally {
             if (abortRef.current === controller) abortRef.current = null;
             isFetchingRef.current = false;
