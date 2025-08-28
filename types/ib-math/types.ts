@@ -29,9 +29,9 @@ type TopicSubTopicView = {
     subTopicLevelDescription: string;
 }
 
-type Difficulty = "Mild" | "Medium" | "Spicy";
+type Difficulty = "mild" | "medium" | "spicy";
 
-type Paper = "Paper 1" | "Paper 2";
+type Paper = "paper1" | "paper2";
 
 type Question = {
     id: string;

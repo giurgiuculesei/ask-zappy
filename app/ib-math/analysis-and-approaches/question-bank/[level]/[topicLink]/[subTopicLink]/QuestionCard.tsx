@@ -19,8 +19,8 @@ export function QuestionCard({ q }: { q: Question }) {
 
                         {/* Middle: Difficulty */}
                         <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2">
-                            {q.difficulty === 'Mild' && (<>
-                                <span className="text-sm text-emerald-500 font-medium">{q.difficulty}</span>
+                            {q.difficulty === 'mild' && (<>
+                                <span className="text-sm text-emerald-500 font-medium">Mild</span>
                                 <span className="inline-flex items-center gap-1">
 
                                     <span className="w-[6px] h-[6px] rounded-full inline-block bg-emerald-500"></span>
@@ -29,8 +29,8 @@ export function QuestionCard({ q }: { q: Question }) {
                                 </span>
                             </>
                             )}
-                            {q.difficulty === 'Medium' && (<>
-                                <span className="text-sm text-orange-400 font-medium">{q.difficulty}</span>
+                            {q.difficulty === 'medium' && (<>
+                                <span className="text-sm text-orange-400 font-medium">Medium</span>
                                 <span className="inline-flex items-center gap-1">
 
                                     <span className="w-[6px] h-[6px] rounded-full inline-block bg-orange-400"></span>
@@ -39,8 +39,8 @@ export function QuestionCard({ q }: { q: Question }) {
                                 </span>
                             </>
                             )}
-                            {q.difficulty === 'Spicy' && (<>
-                                <span className="text-sm text-red-500 font-medium">{q.difficulty}</span>
+                            {q.difficulty === 'spicy' && (<>
+                                <span className="text-sm text-red-500 font-medium">Spicy</span>
                                 <span className="inline-flex items-center gap-1">
 
                                     <span className="w-[6px] h-[6px] rounded-full inline-block bg-red-500"></span>
