@@ -1,6 +1,8 @@
+import "katex/dist/katex.min.css";
+
 export function QuestionCard({ q }: { q: Question }) {
     return (
-        <section id={`q - ${q.id}`} className="mb-6" key={q.id}>
+        <section className="mb-6" key={q.id}>
             <h2 className="text-base font-semibold text-slate-700 mb-3">Question {q.id} </h2>
 
             {/* Grid container ensures equal height */}
@@ -83,7 +85,7 @@ export function QuestionCard({ q }: { q: Question }) {
                                     and simplify your answer.
                                 </p>   */}
                         <div
-                            className="leading-relaxed max-w-none line-clamp-2 prose"
+                            className="question-content leading-relaxed max-w-none prose text-[0.9rem] sm:text-[0.95rem] sm:leading-[1.65] lg:text-[1.05rem] lg:leading-[1.7]"
                             dangerouslySetInnerHTML={{ __html: q.questionHtml ?? '' }}
                         />
                     </div>
@@ -91,7 +93,7 @@ export function QuestionCard({ q }: { q: Question }) {
                 </article>
 
                 {/* Right panel */}
-                < aside className="lg:col-span-3 h-full" >
+                <aside className="lg:col-span-3 h-full" >
                     <div className="h-full rounded-2xl border border-slate-200 bg-white shadow-card p-3 flex flex-col gap-2">
 
                         {/* Mark Scheme (light blue) */}

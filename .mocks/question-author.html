@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<!-- 
+latex markdown using: https://markdownlivepreview.org
+
+
+## Markdown Equation Generator & Math Editor Features
+
+### LaTeX Mathematical Expressions Online
+
+Our **markdown formula generator** and **markdown equation generator** supports comprehensive LaTeX math syntax with live preview. Create beautiful mathematical equations in your markdown documents using our **markdown equation editor**:
+
+Inline equation: $E = mc^2$
+
+Display equations:
+$$
+\begin{align*}
+\frac{d}{dx}e^x &= e^x \\
+\int_a^b f(x)dx &= F(b) - F(a) \\
+\sum_{i=1}^n i &= \frac{n(n+1)}{2}
+\end{align*}
+$$ 
+
+
+-->
+
+<head>
+    <meta charset="utf-8" />
+    <title>Markdown → HTML (with KaTeX)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Minimal styling -->
+    <style>
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            line-height: 1.6;
+            padding: 24px;
+            color: #0f172a;
+        }
+
+        h2 {
+            margin: 0 0 0.4rem;
+            font-size: 1.6rem;
+        }
+
+        h3 {
+            margin: 1.25rem 0 0.25rem;
+            font-size: 1.25rem;
+        }
+
+        p {
+            margin: 0.6rem 0;
+        }
+
+        .katex-display {
+            margin: 1em 0;
+        }
+    </style>
+
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    <!-- KaTeX JS (auto-render) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, { delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '\\[', right: '\\]', display: true},
+      {left: '$', right: '$', display: false},
+      {left: '\\(', right: '\\)', display: false}
+    ]});">
+    </script>
+</head>
+
+<body>
+
+    <h2>Markdown Equation Generator &amp; Math Editor Features</h2>
+
+    <h3>LaTeX Mathematical Expressions Online</h3>
+
+    <p>
+        Our <strong>markdown formula generator</strong> and <strong>markdown equation generator</strong>
+        supports comprehensive LaTeX math syntax with live preview. Create beautiful mathematical
+        equations in your markdown documents using our <strong>markdown equation editor</strong>:
+    </p>
+
+    <p>Inline equation: $E = mc^2$</p>
+
+    <p>Display equations:</p>
+    <p>
+        $$
+        \begin{align*}
+        \frac{d}{dx}e^x &= e^x \\
+        \int_a^b f(x)\,dx &= F(b) - F(a) \\
+        \sum_{i=1}^n i &= \frac{n(n+1)}{2}
+        \end{align*}
+        $$
+    </p>
+
+</body>
+
+</html>

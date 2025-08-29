@@ -1,3 +1,4 @@
+import "katex/dist/katex.min.css";
 import Footer from '../components/footer';
 import Header from '../components/header';
 import "./globals.css";
