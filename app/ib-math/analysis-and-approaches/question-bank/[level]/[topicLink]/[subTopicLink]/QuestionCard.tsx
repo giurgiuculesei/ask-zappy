@@ -58,7 +58,7 @@ export function QuestionCard({ q }: { q: Question }) {
                     className="size-6"
                     viewBox="0 0 24 24"
                     fill="#f1f5f9"
-                    stroke="#bfe1ff"
+                    stroke="#87c4f9"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -70,7 +70,7 @@ export function QuestionCard({ q }: { q: Question }) {
                       y="4"
                       width="10"
                       height="4"
-                      fill="#bfe1ff"
+                      fill="#87c4f9"
                       stroke="none"
                       rx="1"
                     />
@@ -84,6 +84,54 @@ export function QuestionCard({ q }: { q: Question }) {
                     <circle cx="8" cy="19" r="1" />
                     <circle cx="12" cy="19" r="1" />
                     <circle cx="16" cy="19" r="1" />
+                  </svg>
+                )}
+
+                {!q.calculatorAllowed && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="size-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    role="img"
+                    fill="#f8fafc" /* slate-50-ish body */
+                    stroke="#94a3b8" /* slate-400 outlines */
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    {/* Body */}
+                    <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
+                    {/* Display */}
+                    <rect
+                      x="7"
+                      y="4"
+                      width="10"
+                      height="4"
+                      rx="1"
+                      stroke="none"
+                      fill="#cbd5e1"
+                    />{" "}
+                    {/* slate-300 */}
+                    {/* Buttons (outlined) */}
+                    <circle cx="8" cy="11" r="1" fill="none" />
+                    <circle cx="12" cy="11" r="1" fill="none" />
+                    <circle cx="16" cy="11" r="1" fill="none" />
+                    <circle cx="8" cy="15" r="1" fill="none" />
+                    <circle cx="12" cy="15" r="1" fill="none" />
+                    <circle cx="16" cy="15" r="1" fill="none" />
+                    <circle cx="8" cy="19" r="1" fill="none" />
+                    <circle cx="12" cy="19" r="1" fill="none" />
+                    <circle cx="16" cy="19" r="1" fill="none" />
+                    {/* Slash */}
+                    <line
+                      x1="5"
+                      y1="3"
+                      x2="19"
+                      y2="21"
+                      stroke="#64748b"
+                      strokeWidth="2.25"
+                    />{" "}
+                    {/* slate-500 */}
                   </svg>
                 )}
               </span>
