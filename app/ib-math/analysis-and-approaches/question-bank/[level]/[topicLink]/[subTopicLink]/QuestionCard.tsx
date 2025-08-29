@@ -11,11 +11,33 @@ export function QuestionCard({ q }: { q: Question }) {
                 {/* Left panel */}
                 <article className="lg:col-span-9 rounded-2xl border border-slate-200 bg-white shadow-card flex flex-col">
                     <div className="relative flex items-center justify-between px-4 py-3 border-b border-slate-200">
-                        {/* Left: NO CALCULATOR */}
+                        {/* Left: Calculator allowed / not allowed */}
                         <div className="flex items-center gap-2">
-                            <span className="text-[11px] font-semibold rounded-full px-2 py-1 border
-                                     text-[#1166c3] bg-[#f1f5f9]  border-[#bfe1ff]">
+                            {/* Text pill – hidden on small screens, visible from sm: and up */}
+                            <span className="hidden sm:inline text-[11px] font-semibold rounded-full px-2 py-1 border
+                                            text-[#1166c3] bg-[#f1f5f9] border-[#bfe1ff]">
                                 {q.calculatorAllowed ? 'CALCULATOR' : 'NO CALCULATOR'}
+                            </span>
+
+                            {/* Icon – mobile only */}
+                            <span className="sm:hidden flex items-center justify-center">
+                                {q.calculatorAllowed && (
+                                <svg xmlns="http://www.w3.org/2000/svg" className="size-6" viewBox="0 0 24 24" fill="#f1f5f9" stroke="#bfe1ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
+                                    {/* Display screen */}
+                                    <rect x="7" y="4" width="10" height="4" fill="#bfe1ff" stroke="none" rx="1" />
+                                    {/* Buttons */}
+                                    <circle cx="8" cy="11" r="1" />
+                                    <circle cx="12" cy="11" r="1" />
+                                    <circle cx="16" cy="11" r="1" />
+                                    <circle cx="8" cy="15" r="1" />
+                                    <circle cx="12" cy="15" r="1" />
+                                    <circle cx="16" cy="15" r="1" />
+                                    <circle cx="8" cy="19" r="1" />
+                                    <circle cx="12" cy="19" r="1" />
+                                    <circle cx="16" cy="19" r="1" />
+                                </svg>
+                                )}
                             </span>
                         </div>
 
