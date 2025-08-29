@@ -220,7 +220,7 @@ cursor-pointer
       {/* ---- Modal (Mark Scheme) ---- */}
       {open && (
         <div
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
+          className="fixed inset-0 z-50 flex items-center justify-center"
           aria-modal="true"
           role="dialog"
           aria-labelledby={`ms-title-${q.id}`}
@@ -246,7 +246,11 @@ cursor-pointer
         sm:mx-4
         overflow-hidden
       "
-            style={{ height: "92svh", maxHeight: "92vh" }}
+            style={{
+              height: "80svh", // was 92svh
+              maxHeight: "85vh",
+              marginBottom: "calc(env(safe-area-inset-bottom) + 16px)", // lift off bottom safely
+            }}
           >
             {/* Drag handle (mobile only) */}
             <div className="sm:hidden flex justify-center pt-2">
