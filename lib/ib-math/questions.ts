@@ -9,7 +9,7 @@ export async function getQuestionsPage(
   difficulty?: Difficulty,
   cursor?: string | null
 ): Promise<QuestionsPage> {
-  const md = dedent`## Markdown Equation Generator & Math Editor Features
+  const m = dedent`## Markdown Equation Generator & Math Editor Features
 
     ### LaTeX Mathematical Expressions Online
 
@@ -28,7 +28,21 @@ export async function getQuestionsPage(
     \end{aligned}
     $$`;
 
-  const compiledHtml = await mdToHtml(md);
+  const q = dedent`The first two terms of an infinite geometric sequence, in order, are
+    
+    Inline equation: $E = mc^2$
+
+    Display equations:
+    $$
+    \begin{aligned}
+    \frac{d}{dx}e^x &= e^x \\
+    \int_a^b f(x)dx &= F(b) - F(a) \\
+    \sum_{i=1}^n i &= \frac{n(n+1)}{2}
+    \end{aligned}
+    $$`;
+
+  const compiledQ = await mdToHtml(q);
+  const compiledM = await mdToHtml(m);
 
   const start = cursor ? Number(cursor) + 1 : 1;
   const items: Question[] = Array.from({ length: limit }, (_, i) => {
@@ -46,8 +60,8 @@ export async function getQuestionsPage(
       paper: paper ? paper : idNum % 2 === 0 ? "paper1" : "paper2",
       maximumMark: [1, 2, 3, 4, 5][idNum % 5],
       calculatorAllowed: [true, false][idNum % 2],
-      questionHtml: compiledHtml,
-      markupHtml: compiledHtml,
+      questionHtml: compiledQ,
+      markupHtml: compiledM,
       sortKey: String(idNum).padStart(6, "0"),
       updatedAt: new Date().toISOString(),
     };
