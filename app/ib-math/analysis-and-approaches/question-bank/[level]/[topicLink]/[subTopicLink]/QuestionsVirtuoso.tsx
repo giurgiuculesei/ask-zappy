@@ -93,6 +93,8 @@ export default function QuestionsVirtuoso({
             computeItemKey={(_, q) => q.id}
             /*  overscan={10000}
              increaseViewportBy={{ top: 10000, bottom: 10000 }} */
+            //overscan={2000}
+            increaseViewportBy={{ top: 2000, bottom: 2000 }}
             useWindowScroll
             data={items}
             endReached={loadMore}
