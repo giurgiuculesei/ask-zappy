@@ -241,15 +241,15 @@ cursor-pointer
             flex flex-col
         relative z-10 w-full sm:max-w-3xl
         bg-white shadow-xl border border-slate-200
-        sm:rounded-2xl
-        rounded-t-2xl sm:rounded-t-2xl
+        sm:rounded-2xl sm:rounded-t-2xl
+        rounded-2xl 
         sm:mx-4
         overflow-hidden
       "
             style={{
-              height: "90svh", // was 92svh
+              height: "80svh",
               maxHeight: "90vh",
-              marginBottom: "calc(env(safe-area-inset-bottom) + 16px)", // lift off bottom safely
+              //marginBottom: "calc(env(safe-area-inset-bottom) + 16px)", // lift off bottom safely
             }}
           >
             {/* Drag handle (mobile only) */}
@@ -270,7 +270,7 @@ cursor-pointer
                 id={`ms-title-${q.id}`}
                 className="text-sm font-semibold text-slate-800"
               >
-                Question {q.id}
+                Mark Scheme
               </h3>
 
               <button
@@ -296,28 +296,8 @@ cursor-pointer
               className="flex-1 overflow-y-auto px-4 py-4"
               style={{ WebkitOverflowScrolling: "touch" }}
             >
-              {/* Question block */}
-              <div className="mb-4">
-                <p className="text-xs text-slate-500 mb-2">
-                  [Maximum mark: {q.maximumMark}]
-                </p>
-                <div
-                  className="question-content leading-relaxed max-w-none prose text-[0.8rem] sm:text-[1rem] sm:leading-[1.65]"
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      q.questionHtml ??
-                      '<p class="text-slate-500">No question content.</p>',
-                  }}
-                />
-              </div>
-
-              <hr className="my-4 border-slate-200" />
-
               {/* Mark scheme block */}
               <div>
-                <h4 className="text-sm font-semibold text-slate-700 mb-2">
-                  Mark Scheme
-                </h4>
                 <div
                   className="question-content leading-relaxed max-w-none prose text-[0.8rem] sm:text-[1rem] sm:leading-[1.65]"
                   dangerouslySetInnerHTML={{
