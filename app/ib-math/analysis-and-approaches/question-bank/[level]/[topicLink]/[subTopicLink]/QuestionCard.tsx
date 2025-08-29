@@ -247,8 +247,8 @@ cursor-pointer
         overflow-hidden
       "
             style={{
-              height: "80svh", // was 92svh
-              maxHeight: "85vh",
+              height: "90svh", // was 92svh
+              maxHeight: "90vh",
               marginBottom: "calc(env(safe-area-inset-bottom) + 16px)", // lift off bottom safely
             }}
           >
