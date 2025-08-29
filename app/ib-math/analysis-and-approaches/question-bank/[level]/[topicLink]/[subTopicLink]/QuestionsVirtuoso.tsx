@@ -94,7 +94,7 @@ export default function QuestionsVirtuoso({
             /*  overscan={10000}
              increaseViewportBy={{ top: 10000, bottom: 10000 }} */
             //overscan={2000}
-            increaseViewportBy={{ top: 2000, bottom: 2000 }}
+            increaseViewportBy={{ top: 2000, bottom: 2000 }} /* fix lag on mobile*/
             useWindowScroll
             data={items}
             endReached={loadMore}

@@ -9,7 +9,7 @@ export const revalidate = 86400; // 24h; change if needed
 
 export default async function QuestionsPage({ params, searchParams }: {
     params: Promise<{ level: Level, topicLink: string, subTopicLink: string }>,
-    searchParams: Promise<{ paper?: Paper, difficulty?: Difficulty; q?: string }>
+    searchParams: Promise<{ paper?: Paper, difficulty?: Difficulty; q?: string; cursor?: string }>
 }
 ) {
     const { level, topicLink, subTopicLink } = await params;
@@ -22,14 +22,15 @@ export default async function QuestionsPage({ params, searchParams }: {
     }
 
     /// normalize filters
-    const { paper, difficulty, q } = await searchParams;
+    const { paper, difficulty, q, cursor } = await searchParams;
 
     // fetch first page (SSR)
     const { items, nextCursor } = await getQuestionsPage(
         topicData?.subTopicId,
         20,
         paper,
-        difficulty
+        difficulty,
+        cursor
     );
 
     const base = `/api/ib-math/question-bank/questions/${encodeURIComponent(topicData.subTopicId)}`;
