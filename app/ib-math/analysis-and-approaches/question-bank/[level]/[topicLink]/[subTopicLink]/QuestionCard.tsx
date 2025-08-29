@@ -183,7 +183,7 @@ export function QuestionCard({ q }: { q: Question }) {
                                     and simplify your answer.
                                 </p>   */}
             <div
-              className="question-content leading-relaxed max-w-none prose text-[0.9rem] sm:text-[0.95rem] sm:leading-[1.65] lg:text-[1.05rem] lg:leading-[1.7]"
+              className="question-content leading-relaxed max-w-none prose text-[0.8rem] sm:text-[0.95rem] sm:leading-[1.65] lg:text-[1.05rem] lg:leading-[1.7]"
               dangerouslySetInnerHTML={{ __html: q.questionHtml ?? "" }}
             />
           </div>
@@ -224,34 +224,59 @@ cursor-pointer
           aria-modal="true"
           role="dialog"
           aria-labelledby={`ms-title-${q.id}`}
-          id={`ms-dialog-${q.id}`}
-          onMouseDown={onBackdropClick}
         >
-          {/* Backdrop */}
-          <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" />
+          {/* Backdrop (click to close) */}
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="Close"
+            className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+          />
 
           {/* Dialog */}
           <div
             ref={dialogRef}
-            className="relative z-10 w-full sm:max-w-3xl max-h-[85vh] sm:rounded-2xl bg-white shadow-xl border border-slate-200 overflow-hidden sm:mx-4"
-            onMouseDown={(e) => e.stopPropagation()}
+            // Mobile: bottom sheet with rounded top; Desktop: centered card
+            className="
+            flex flex-col
+        relative z-10 w-full sm:max-w-3xl
+        bg-white shadow-xl border border-slate-200
+        sm:rounded-2xl
+        rounded-t-2xl sm:rounded-t-2xl
+        sm:mx-4
+        overflow-hidden
+      "
+            style={{ height: "92svh", maxHeight: "92vh" }}
           >
-            {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200">
+            {/* Drag handle (mobile only) */}
+            <div className="sm:hidden flex justify-center pt-2">
+              <span className="h-1.5 w-10 rounded-full bg-slate-200" />
+            </div>
+
+            {/* Header (sticky) */}
+            <div
+              className="
+          sticky top-0 z-10
+          bg-white/95 backdrop-blur
+          px-4 py-3 border-b border-slate-200
+          flex items-center justify-between
+        "
+            >
               <h3
                 id={`ms-title-${q.id}`}
                 className="text-sm font-semibold text-slate-800"
               >
                 Question {q.id}
               </h3>
+
               <button
                 onClick={() => setOpen(false)}
-                className="p-2 rounded-md hover:bg-slate-100"
+                className="p-2 -mr-1 rounded-md hover:bg-slate-100 active:bg-slate-200"
                 aria-label="Close mark scheme"
               >
                 <svg
                   viewBox="0 0 24 24"
-                  className="size-5"
+                  className="size-6"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
@@ -262,15 +287,18 @@ cursor-pointer
               </button>
             </div>
 
-            {/* Body */}
-            <div className="px-4 py-4 overflow-auto">
+            {/* Scroll area */}
+            <div
+              className="flex-1 overflow-y-auto px-4 py-4"
+              style={{ WebkitOverflowScrolling: "touch" }}
+            >
               {/* Question block */}
               <div className="mb-4">
                 <p className="text-xs text-slate-500 mb-2">
                   [Maximum mark: {q.maximumMark}]
                 </p>
                 <div
-                  className="question-content leading-relaxed max-w-none prose text-[0.9rem] sm:text-[0.95rem] sm:leading-[1.65] lg:text-[1.05rem] lg:leading-[1.7]"
+                  className="question-content leading-relaxed max-w-none prose text-[0.8rem] sm:text-[1rem] sm:leading-[1.65]"
                   dangerouslySetInnerHTML={{
                     __html:
                       q.questionHtml ??
@@ -287,11 +315,10 @@ cursor-pointer
                   Mark Scheme
                 </h4>
                 <div
-                  className="question-content leading-relaxed max-w-none prose text-[0.9rem] sm:text-[0.95rem] sm:leading-[1.65] lg:text-[1.05rem] lg:leading-[1.7]"
-                  // Use the field that holds your mark scheme HTML
+                  className="question-content leading-relaxed max-w-none prose text-[0.8rem] sm:text-[1rem] sm:leading-[1.65]"
                   dangerouslySetInnerHTML={{
                     __html:
-                      q.markupHtml ?? // (fallback if you had a different name earlier)
+                      q.markupHtml ??
                       '<p class="text-slate-500">No mark scheme available.</p>',
                   }}
                 />
