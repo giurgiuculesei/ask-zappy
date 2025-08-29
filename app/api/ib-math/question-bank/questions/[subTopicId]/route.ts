@@ -1,7 +1,7 @@
 import { getQuestionsPage } from '@/lib/ib-math/questions';
 import { NextResponse } from 'next/server';
 
-export const revalidate = 0;
+export const revalidate = 86400; // 24h; change if needed
 
 export async function GET(req: Request,
     ctx: { params: Promise<{ subTopicId: string }> }

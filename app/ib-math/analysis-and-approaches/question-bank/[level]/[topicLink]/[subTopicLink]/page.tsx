@@ -5,6 +5,8 @@ import Filters from "./Filters";
 import QuestionsSSR from "./QuestionsSSR";
 import QuestionsVirtuoso from "./QuestionsVirtuoso";
 
+export const revalidate = 86400; // 24h; change if needed
+
 export default async function QuestionsPage({ params, searchParams }: {
     params: Promise<{ level: Level, topicLink: string, subTopicLink: string }>,
     searchParams: Promise<{ paper?: Paper, difficulty?: Difficulty; q?: string }>
