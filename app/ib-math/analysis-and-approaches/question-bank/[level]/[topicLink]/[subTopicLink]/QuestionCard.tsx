@@ -233,17 +233,14 @@ export function QuestionCard({ q }: { q: Question }) {
                 prose-p:mb-3 lg:prose-p:mb-4
                 prose-p:last:mb-0
                 
-                prose-table:mt-0            /* no top margin on tables */
-                prose-table:mb-0            /* optional: no bottom margin */
-
-                prose-th:p-0
-                
                 prose-table:w-full
-                prose-table:border-separate            
-
-                prose-th:text-[inherit] prose-td:text-[inherit]
-                prose-th:leading-[inherit] prose-td:leading-[inherit]
-                prose-th:font-normal        /* optional: remove bold header look */
+                prose-table:border-separate    
+                prose-table:mt-0
+                prose-table:mb-0
+                
+                prose-th:p-0              
+                prose-td:text-[0.8rem] prose-td:sm:text-[0.95rem] prose-td:lg:text-[1.05rem]                          
+                prose-td:leading-[1.6] prose-td:sm:leading-[1.65] prose-td:lg:leading-[1.7]          
             "
               dangerouslySetInnerHTML={{ __html: q.questionHtml ?? "" }}
             />
