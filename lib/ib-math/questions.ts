@@ -9,37 +9,28 @@ export async function getQuestionsPage(
   difficulty?: Difficulty,
   cursor?: string | null
 ): Promise<QuestionsPage> {
-  const m = dedent`## Markdown Equation Generator & Math Editor Features
+  const q = dedent`[Maximum mark: 5]
 
-    ### LaTeX Mathematical Expressions Online
+A company’s revenue in year 0 is $R_0 = 8.0\times 10^{5}$ dollars. Each year, the revenue is multiplied by a constant factor $k$ with $1<k<1.2$. After $n$ years, the revenue is $R_n = R_0\,k^{n}$.
 
-    Our **markdown formula generator** and **markdown equation generator** supports comprehensive LaTeX math syntax with live preview. Create beautiful mathematical equations in your markdown documents using our **markdown equation editor**:
+|||
+|:---|---:|
+| **(a)** Given $R_3 = 1.10\times 10^{6}$, find $k$ correct to 3 significant figures. | [2] |
+| **(b)** Find the least integer $n$ such that $R_n \ge 1.5\times 10^{6}$. | [3] |`;
 
-    The first two terms of an infinite geometric sequence, in order, are
+  const m = dedent`**(a)** Using $R_3 = R_0\,k^{3}$:
+$$k^{3}=\frac{R_3}{R_0}=\frac{1.10\times 10^{6}}{8.0\times 10^{5}}=1.375.$$
+$$k=1.375^{1/3}\approx 1.112\ \Rightarrow\ \boxed{k=1.11\ \text{(3 s.f.)}}.$$
 
-    Inline equation: $E = mc^2$
+**(b)** Require $R_0\,k^{n}\ge 1.5\times 10^{6}$:
+$$k^{n}\ge \frac{1.5\times 10^{6}}{8.0\times 10^{5}}=1.875.$$
+Using logs,
+$$n \ge \frac{\ln(1.875)}{\ln(k)} \approx \frac{0.627}{\ln(1.112)} \approx 5.92.$$
+Hence the least integer is $\boxed{n=6}$.
 
-    Display equations:
-    $$
-    \begin{aligned}
-    \frac{d}{dx}e^x &= e^x \\
-    \int_a^b f(x)dx &= F(b) - F(a) \\
-    \sum_{i=1}^n i &= \frac{n(n+1)}{2}
-    \end{aligned}
-    $$`;
-
-  const q = dedent`The first two terms of an infinite geometric sequence, in order, are
-    
-    Inline equation: $E = mc^2$
-
-    Display equations:
-    $$
-    \begin{aligned}
-    \frac{d}{dx}e^x &= e^x \\
-    \int_a^b f(x)dx &= F(b) - F(a) \\
-    \sum_{i=1}^n i &= \frac{n(n+1)}{2}
-    \end{aligned}
-    $$`;
+(Check): $k^{6}=(k^{3})^{2}=(1.375)^{2}=1.890625$ so
+$$R_6=R_0\,k^{6}=(8.0\times 10^{5})\times 1.890625=1.5125\times 10^{6}\ge 1.5\times 10^{6}.$$
+`;
 
   const compiledQ = await mdToHtml(q);
   const compiledM = await mdToHtml(m);

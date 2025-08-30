@@ -222,16 +222,10 @@ export function QuestionCard({ q }: { q: Question }) {
           </div>
 
           <div className="px-5 py-5 flex-1">
-            <p className="text-sm text-slate-500 mb-2">
-              [Maximum mark: {q.maximumMark}]
-            </p>
-            {/* <p className="leading-relaxed">
-                                    Expand <span className="font-mono">(2x + 1)<sup>4</sup></span> in descending powers of
-                                    <em>x</em>
-                                    and simplify your answer.
-                                </p>   */}
             <div
-              className="question-content leading-relaxed max-w-none prose text-[0.8rem] sm:text-[0.95rem] sm:leading-[1.65] lg:text-[1.05rem] lg:leading-[1.7]"
+              className="question-content leading-relaxed max-w-none prose text-[0.8rem] sm:text-[0.95rem] sm:leading-[1.65] lg:text-[1.05rem] lg:leading-[1.7] 
+              [&_p]:mt-0 [&_p]:mb-2 sm:[&_p]:mb-3 lg:[&_p]:mb-4 [&_p:last-child]:mb-0           
+              [&_table]:w-full [&_table]:border-separate [&_table]:border-spacing-y-2"
               dangerouslySetInnerHTML={{ __html: q.questionHtml ?? "" }}
             />
           </div>
@@ -347,7 +341,7 @@ cursor-pointer
               {/* Mark scheme block */}
               <div>
                 <div
-                  className="question-content leading-relaxed max-w-none prose text-[0.8rem] sm:text-[1rem] sm:leading-[1.65]"
+                  className="question-content leading-relaxed max-w-none prose text-[0.8rem] sm:text-[1rem] sm:leading-[1.65] [&_p]:my-2 sm:[&_p]:my-3 lg:[&_p]:my-4"
                   dangerouslySetInnerHTML={{
                     __html:
                       q.markupHtml ??
