@@ -357,12 +357,26 @@ cursor-pointer
               {/* Mark scheme block */}
               <div>
                 <div
-                  className="question-content leading-relaxed max-w-none prose text-[0.8rem] sm:text-[1rem] sm:leading-[1.65] [&_p]:my-2 sm:[&_p]:my-3 lg:[&_p]:my-4"
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      q.markupHtml ??
-                      '<p class="text-slate-500">No mark scheme available.</p>',
-                  }}
+                  className="
+                    question-content
+                    prose prose-slate max-w-none
+                    text-[0.8rem] sm:text-[0.95rem] lg:text-[1.05rem]
+                    leading-[1.6] sm:leading-[1.65] lg:leading-[1.7]
+
+                    prose-p:mt-0
+                    prose-p:mb-3 lg:prose-p:mb-4
+                    prose-p:last:mb-0
+                    
+                    prose-table:w-full
+                    prose-table:border-separate    
+                    prose-table:mt-0
+                    prose-table:mb-0
+                    
+                    prose-th:p-0              
+                    prose-td:text-[0.8rem] prose-td:sm:text-[0.95rem] prose-td:lg:text-[1.05rem]                          
+                    prose-td:leading-[1.6] prose-td:sm:leading-[1.65] prose-td:lg:leading-[1.7]          
+                "
+                  dangerouslySetInnerHTML={{ __html: q.markupHtml ?? "" }}
                 />
               </div>
             </div>
