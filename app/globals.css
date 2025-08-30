@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+Pro:wght@400;600&display=swap');
 @import "tailwindcss";
 
+/* v4 plugin registration happens in CSS */
+@plugin "@tailwindcss/typography";
+
 .question-content {
   font-family: 'Source Serif Pro', serif;
 }

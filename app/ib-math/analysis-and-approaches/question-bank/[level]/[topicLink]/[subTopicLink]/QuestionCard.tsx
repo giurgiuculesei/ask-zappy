@@ -223,9 +223,28 @@ export function QuestionCard({ q }: { q: Question }) {
 
           <div className="px-5 py-5 flex-1">
             <div
-              className="question-content leading-relaxed max-w-none prose text-[0.8rem] sm:text-[0.95rem] sm:leading-[1.65] lg:text-[1.05rem] lg:leading-[1.7] 
-              [&_p]:mt-0 [&_p]:mb-2 sm:[&_p]:mb-3 lg:[&_p]:mb-4 [&_p:last-child]:mb-0           
-              [&_table]:w-full [&_table]:border-separate [&_table]:border-spacing-y-2"
+              className="
+                question-content
+                prose prose-slate max-w-none
+                text-[0.8rem] sm:text-[0.95rem] lg:text-[1.05rem]
+                leading-[1.6] sm:leading-[1.65] lg:leading-[1.7]
+
+                prose-p:mt-0
+                prose-p:mb-3 lg:prose-p:mb-4
+                prose-p:last:mb-0
+                
+                prose-table:mt-0            /* no top margin on tables */
+                prose-table:mb-0            /* optional: no bottom margin */
+
+                prose-th:p-0
+                
+                prose-table:w-full
+                prose-table:border-separate            
+
+                prose-th:text-[inherit] prose-td:text-[inherit]
+                prose-th:leading-[inherit] prose-td:leading-[inherit]
+                prose-th:font-normal        /* optional: remove bold header look */
+            "
               dangerouslySetInnerHTML={{ __html: q.questionHtml ?? "" }}
             />
           </div>
