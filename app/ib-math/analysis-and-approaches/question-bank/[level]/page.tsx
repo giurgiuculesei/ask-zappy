@@ -1,34 +1,38 @@
-import Topics from '@/components/ib-math/topics';
-import { getTopics } from '@/lib/ib-math/topics';
-import { Metadata } from 'next';
+import Topics from "@/components/ib-math/topics";
+import { getTopics } from "@/lib/ib-math/topics";
+import { Metadata } from "next";
 
 export const revalidate = 86400; // 24h; change if needed
-export const dynamicParams = false;     // we only allow 'sl' and 'hl'
+export const dynamicParams = false; // we only allow 'sl' and 'hl'
 
 export async function generateStaticParams() {
-    return [{ level: 'sl' }, { level: 'hl' }];
+  return [{ level: "sl" }, { level: "hl" }];
 }
 
 export async function generateMetadata({
-    params,
+  params,
 }: {
-    params: Promise<{ level: Level }>;
+  params: Promise<{ level: Level }>;
 }): Promise<Metadata> {
-    const { level } = await params;
-    return {
-        title: `Analysis and Approaches ${level.toUpperCase()} topics`,
-        description: `Daily-updated IB Mathematics Analysis & Approaches ${level === 'sl' ? 'Standard Level (SL)' : 'Higher Level (HL)'} topics.`,
-    };
+  const { level } = await params;
+  return {
+    title: `Analysis and Approaches ${level.toUpperCase()} topics`,
+    description: `Daily-updated IB Mathematics Analysis & Approaches ${
+      level === "sl" ? "Standard Level (SL)" : "Higher Level (HL)"
+    } topics.`,
+  };
 }
 
-export default async function Page({ params }: { params: Promise<{ level: Level }> }) {
-    // Get the level from params
-    const { level } = await params;
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ level: Level }>;
+}) {
+  // Get the level from params
+  const { level } = await params;
 
-    // Fetch the topics based on the level
-    const topics = await getTopics();
+  // Fetch the topics based on the level
+  const topics = await getTopics();
 
-    return (
-        <Topics initialLevel={level} initialTopics={topics} />
-    );
+  return <Topics initialLevel={level} initialTopics={topics} />;
 }
