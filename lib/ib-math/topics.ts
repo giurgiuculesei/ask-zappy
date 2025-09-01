@@ -7,7 +7,7 @@ export async function getTopicDataByLink(
   subTopicLink: string,
   level: Level
 ): Promise<TopicSubTopicView | null> {
-  console.log(`getTopicDataByLink enter`);
+  console.log(`getTopicDataByLink enter `, { topicLink, subTopicLink, level });
 
   const session = driver.session({ defaultAccessMode: "READ" });
   try {
@@ -30,7 +30,7 @@ export async function getTopicDataByLink(
 
     const results = res.records.map((r) => r.toObject()) as TopicSubTopicView[];
 
-    console.log(`getTopicDataByLink exit`);
+    console.log(`getTopicDataByLink exit found=`, results.length == 1);
 
     return results.length == 1 ? results[0] : null;
   } finally {
