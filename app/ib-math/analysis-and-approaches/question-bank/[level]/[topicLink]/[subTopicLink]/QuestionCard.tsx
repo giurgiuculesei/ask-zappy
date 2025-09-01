@@ -22,13 +22,6 @@ export function QuestionCard({ q }: { q: Question }) {
     };
   }, [open]);
 
-  // Click outside to close
-  const onBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (dialogRef.current && !dialogRef.current.contains(e.target as Node)) {
-      setOpen(false);
-    }
-  };
-
   return (
     <section className="mb-6" key={q.id}>
       <h2 className="text-base font-semibold text-slate-700 mb-3">
