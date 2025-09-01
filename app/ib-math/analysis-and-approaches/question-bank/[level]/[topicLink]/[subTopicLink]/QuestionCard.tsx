@@ -47,12 +47,12 @@ export function QuestionCard({ q }: { q: Question }) {
                 className="hidden sm:inline text-[11px] font-semibold rounded-full px-2 py-1 border
                                             text-[#1166c3] bg-[#f1f5f9] border-[#bfe1ff]"
               >
-                {q.calculatorAllowed ? "CALCULATOR" : "NO CALCULATOR"}
+                {q.paper === "paper2" ? "CALCULATOR" : "NO CALCULATOR"}
               </span>
 
               {/* Icon – mobile only */}
               <span className="sm:hidden flex items-center justify-center">
-                {q.calculatorAllowed && (
+                {q.paper === "paper2" && (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="size-6"
@@ -87,7 +87,7 @@ export function QuestionCard({ q }: { q: Question }) {
                   </svg>
                 )}
 
-                {!q.calculatorAllowed && (
+                {q.paper !== "paper2" && (
                   <svg
                     viewBox="0 0 24 24"
                     className="size-6"
@@ -376,7 +376,7 @@ cursor-pointer
                     prose-td:text-[0.8rem] prose-td:sm:text-[0.95rem] prose-td:lg:text-[1.05rem]                          
                     prose-td:leading-[1.6] prose-td:sm:leading-[1.65] prose-td:lg:leading-[1.7]          
                 "
-                  dangerouslySetInnerHTML={{ __html: q.markupHtml ?? "" }}
+                  dangerouslySetInnerHTML={{ __html: q.markSchemeHtml ?? "" }}
                 />
               </div>
             </div>

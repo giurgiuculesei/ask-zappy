@@ -19,11 +19,11 @@ type Topic = {
 };
 
 type TopicSubTopicView = {
-  topicId: string;
+  topicId: number;
   topicName: string;
   topicOrder: number;
   topicLink: string;
-  subTopicId: string;
+  subTopicId: number;
   subTopicName: string;
   subTopicLink: string;
   subTopicLevelDescription: string;
@@ -34,17 +34,18 @@ type Difficulty = "mild" | "medium" | "spicy";
 type Paper = "paper1" | "paper2";
 
 type Question = {
-  id: string;
+  id: number;
   difficulty: Difficulty;
   paper: Paper;
-  maximumMark: number;
-  calculatorAllowed: boolean;
+  questionMarkdown: string;
   questionHtml: string;
-  markupHtml: string;
+  questionText: string;
+  markSchemeMarkdown: string;
+  markSchemeHtml: string;
+  markSchemeText: string;
 };
 
 type QuestionsPage = {
   items: Question[];
-  nextCursor?: string | null;
-  hasNext?: boolean;
+  nextCursor?: number | null;
 };

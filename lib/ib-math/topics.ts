@@ -28,9 +28,9 @@ export async function getTopicDataByLink(
       { qbId: 1, topicLink, subTopicLink, level: level.toUpperCase() }
     );
 
-    console.log(`getTopicDataByLink exit`, res.records.length);
-
     const results = res.records.map((r) => r.toObject()) as TopicSubTopicView[];
+
+    console.log(`getTopicDataByLink exit`);
 
     return results.length == 1 ? results[0] : null;
   } finally {
