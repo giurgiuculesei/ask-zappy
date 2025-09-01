@@ -7,3 +7,6 @@
 .question-content {
   font-family: 'Source Serif Pro', serif;
 }
+
+.katex { white-space: nowrap; word-break: normal; overflow-wrap: normal; }
+.katex-display { white-space: nowrap; }  /* display math shouldn't wrap either */
