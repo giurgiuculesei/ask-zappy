@@ -60,12 +60,12 @@ export async function getTopics(): Promise<Topic[]> {
             RETURN collect(stl { .description, level: lvl.id }) AS levels
         }
         RETURN collect(
-                s {.id, .name, levels: levels }
+                s {.id, .name, .link, levels: levels }
                 ) AS subtopics
         }
         WITH t, subtopics
         ORDER BY t.id
-        RETURN t {.id, .name, subtopics: subtopics } AS topic;
+        RETURN t {.id, .name, .link, subtopics: subtopics } AS topic;
         `,
       { qbId: 1 }
     );

@@ -8,6 +8,7 @@ type SubTopicLevel = {
 type SubTopic = {
   id: number;
   name: string;
+  link: string;
   levels: SubTopicLevel[];
   free?: boolean;
 };
@@ -15,6 +16,7 @@ type SubTopic = {
 type Topic = {
   id: number;
   name: string;
+  link: string;
   subtopics: SubTopic[];
 };
 

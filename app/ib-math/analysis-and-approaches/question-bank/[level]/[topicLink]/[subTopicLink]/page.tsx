@@ -1,11 +1,74 @@
 import { getQuestionsPage } from "@/lib/ib-math/questions";
-import { getTopicDataByLink } from "@/lib/ib-math/topics";
+import { getTopicDataByLink, getTopics } from "@/lib/ib-math/topics";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Filters from "./Filters";
 import QuestionsSSR from "./QuestionsSSR";
 import QuestionsVirtuoso from "./QuestionsVirtuoso";
 
 export const revalidate = 86400; // 24h; change if needed
+
+export async function generateStaticParams() {
+  const topics = await getTopics();
+
+  const params: Array<{
+    level: Level;
+    topicLink: string;
+    subTopicLink: string;
+  }> = [];
+
+  for (const t of topics) {
+    const topicLink = t.link;
+
+    for (const s of t.subtopics ?? []) {
+      const subTopicLink = s.link;
+
+      for (const l of s.levels ?? []) {
+        const level = l.level.toLowerCase() as Level;
+        params.push({ level, topicLink, subTopicLink });
+      }
+    }
+  }
+
+  return params;
+}
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ level: Level; topicLink: string; subTopicLink: string }>;
+  searchParams: Promise<{ paper?: Paper; difficulty?: Difficulty; q?: string }>;
+}): Promise<Metadata> {
+  const { level, topicLink, subTopicLink } = await params;
+  const { paper, difficulty, q } = await searchParams;
+
+  const topicData = await getTopicDataByLink(topicLink, subTopicLink, level);
+  if (!topicData) {
+    return {
+      title: "Not found | Ask Zappy",
+      description: "The requested subtopic could not be found.",
+    };
+  }
+
+  const lvl = level.toUpperCase();
+  const title = `${topicData.subTopicName} - ${topicData.topicName} - IB Math AA ${lvl} Questionbank`;
+
+  const parts: string[] = [];
+  parts.push(
+    `Practice IB Mathematics: Analysis & Approaches ${lvl} questions for ${topicData.subTopicName} with markschemes. ${topicData.subTopicLevelDescription}.`
+  );
+
+  if (paper) parts.push(`Paper: ${paper}`);
+  if (difficulty) parts.push(`Difficulty: ${difficulty}`);
+  if (q && q.trim()) parts.push(`Query: “${q.trim()}”`);
+
+  const description = parts.join(" - ");
+
+  console.log("meta", { title, description });
+
+  return { title, description };
+}
 
 export default async function QuestionsPage({
   params,
