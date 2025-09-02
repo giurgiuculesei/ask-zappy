@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+export const revalidate = 86400; // 24h; change if needed
+
 export default function Topics({
   initialLevel,
   initialTopics,
@@ -122,7 +124,7 @@ export default function Topics({
                     name="level"
                     value={opt}
                     className="peer sr-only"
-                    defaultChecked={opt === level}
+                    checked={opt === level}
                     onChange={() => onChange(opt)}
                   />
                   <span className="px-5 py-3 text-base md:text-lg rounded-xl text-slate-700 peer-checked:bg-white peer-checked:text-slate-900 peer-checked:shadow peer-checked:ring-1 peer-checked:ring-slate-300">
