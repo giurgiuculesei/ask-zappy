@@ -37,12 +37,8 @@ type Question = {
   id: number;
   difficulty: Difficulty;
   paper: Paper;
-  questionMarkdown: string;
   questionHtml: string;
-  questionText: string;
-  markSchemeMarkdown: string;
   markSchemeHtml: string;
-  markSchemeText: string;
 };
 
 type QuestionsPage = {

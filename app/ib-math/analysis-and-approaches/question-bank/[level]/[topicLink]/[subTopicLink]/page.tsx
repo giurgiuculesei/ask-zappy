@@ -30,6 +30,7 @@ export default async function QuestionsPage({
 
   /// normalize filters
   const { paper, difficulty, q, cursor } = await searchParams;
+  console.log({ paper, difficulty, q, cursor });
 
   // fetch first page (SSR)
   const { items, nextCursor } = await getQuestionsPage(
@@ -37,6 +38,7 @@ export default async function QuestionsPage({
     20,
     paper,
     difficulty,
+    q,
     cursor
   );
 
@@ -50,8 +52,6 @@ export default async function QuestionsPage({
   if (q) qs.set("q", q);
 
   const endpoint = `${base}?${qs.toString()}`;
-
-  const filterKey = `${paper}|${difficulty}|${q}`;
 
   return (
     <>
@@ -78,8 +78,6 @@ export default async function QuestionsPage({
         </nav>
 
         <noscript>
-          {/* <PaginationLinks page={pageNum} hasNext={!!initialPage.nextCursor} /> */}
-
           <QuestionsSSR data-ssr items={items} />
         </noscript>
 
@@ -87,7 +85,6 @@ export default async function QuestionsPage({
           initialItems={items}
           initialCursor={nextCursor ?? null}
           endpoint={endpoint}
-          filterKey={filterKey}
         />
       </main>
     </>

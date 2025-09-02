@@ -19,12 +19,10 @@ export default function QuestionsVirtuoso({
   initialItems,
   initialCursor,
   endpoint,
-  filterKey,
 }: {
   initialItems: Question[];
   initialCursor: number | null;
   endpoint: string;
-  filterKey: string;
 }) {
   const [items, setItems] = useState<Question[]>(initialItems);
   const [cursor, setCursor] = useState<number | null>(initialCursor);
@@ -47,7 +45,7 @@ export default function QuestionsVirtuoso({
 
     // scroll to top for new filter set
     listRef.current?.scrollToIndex({ index: 0, align: "start" });
-  }, [filterKey, endpoint, initialItems, initialCursor]);
+  }, [endpoint, initialItems, initialCursor]);
 
   const loadMore = useCallback(async () => {
     if (isFetchingRef.current || loading || !cursor) return;
@@ -103,7 +101,6 @@ export default function QuestionsVirtuoso({
       data={items}
       endReached={loadMore}
       itemContent={(_, q) => <Row q={q} />}
-      //key={filterKey}
     />
   );
 }
