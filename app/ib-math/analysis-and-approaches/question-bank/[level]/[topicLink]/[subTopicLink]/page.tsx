@@ -135,7 +135,7 @@ export default async function QuestionsPage({
       {/* Filters are interactive (client) but also submit as GET for no-JS */}
       <Filters initial={{ paper, difficulty, q }} />
 
-      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 pb-[calc(env(safe-area-inset-bottom)+88px)]">
         <nav aria-label="Pagination" className="sr-only">
           {nextCursor && <a href={`?cursor=${nextCursor}`}>Next page</a>}
         </nav>
