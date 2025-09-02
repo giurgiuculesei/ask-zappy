@@ -47,11 +47,14 @@ export async function GET(
   const cursor = rawCursor !== null ? Number(rawCursor) : null;
   const limit = Math.min(Number(url.searchParams.get("limit") ?? 20), 50);
 
+  const query = url.searchParams.get("q");
+
   const data = await getQuestionsPage(
     Number(subTopicId),
     limit,
     paper,
     difficulty,
+    query,
     cursor
   );
 
