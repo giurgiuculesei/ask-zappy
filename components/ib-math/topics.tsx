@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export const revalidate = 86400; // 24h; change if needed
@@ -139,7 +140,7 @@ export default function Topics({
     </section>
   );
 
-  const renderCards = (subtopics: SubTopic[]) => {
+  const renderCards = (topicLink: string, subtopics: SubTopic[]) => {
     // Show cards if selected level is included
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -176,12 +177,12 @@ export default function Topics({
               }
             </p>
             <div className="mt-auto pt-5">
-              <a
-                href="#"
+              <Link
+                href={`/ib-math/analysis-and-approaches/question-bank/${level}/${topicLink}/${subTopic.link}`}
                 className="inline-flex items-center justify-center w-full rounded-full border border-slate-300 px-4 py-2.5 text-sm font-medium hover:bg-slate-50"
               >
                 Open Study
-              </a>
+              </Link>
             </div>
           </article>
         ))}
@@ -201,7 +202,7 @@ export default function Topics({
             <h2 className="text-2xl font-semibold tracking-tight mt-1">
               {t.name}
             </h2>
-            <div className="mt-6">{renderCards(t.subtopics)}</div>
+            <div className="mt-6">{renderCards(t.link, t.subtopics)}</div>
           </>
         );
 
