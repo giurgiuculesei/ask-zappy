@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ask Zappy — IB Math</title>
+    <meta
+      name="description"
+      content="A fresh, fast, free home for IB Mathematics (AA & AI • SL/HL)."
+    />
+
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui"] },
+            colors: {
+              brand: {
+                50: "#f5f7ff",
+                100: "#e9edff",
+                200: "#d9ddff",
+                300: "#b9c0ff",
+                400: "#8f98ff",
+                500: "#6a78ff",
+                600: "#525ee6",
+                700: "#434cc0",
+                800: "#343a94",
+                900: "#2a3077",
+              },
+            },
+            boxShadow: {
+              card: "0 1px 1px rgba(0,0,0,.04), 0 8px 24px rgba(2,6,23,.08)",
+            },
+          },
+          container: { center: true, padding: { DEFAULT: "1rem", md: "2rem" } },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
+          "Helvetica Neue", Arial, "Noto Sans";
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800">
+    <!-- ===== Header (new) ===== -->
+    <header
+      class="sticky top-0 z-50 backdrop-blur bg-white/80 border-b border-slate-200/70"
+    >
+      <div class="container h-16 flex items-center gap-4">
+        <a href="#" class="flex items-center gap-2">
+          <img
+            src="/ib-blocks-badge.svg"
+            alt="Ask Zappy"
+            width="40"
+            height="40"
+            class="rounded"
+          />
+          <span class="text-[15px] font-semibold tracking-tight"
+            >Ask Zappy</span
+          >
+        </a>
+        <nav class="ml-4 hidden md:flex items-center gap-6 text-[15px]">
+          <a href="#courses" class="text-slate-700 hover:text-slate-900"
+            >Courses</a
+          >
+          <a href="#topics" class="text-slate-700 hover:text-slate-900"
+            >Topics</a
+          >
+          <a href="#practice" class="text-slate-700 hover:text-slate-900"
+            >Practice</a
+          >
+        </nav>
+        <div class="ml-auto flex items-center gap-3">
+          <a
+            href="#"
+            class="inline-flex items-center rounded-full bg-brand-600 px-4 py-2 text-white text-sm font-semibold hover:bg-brand-700"
+            >Sign up free</a
+          >
+          <button
+            class="md:hidden p-2 rounded-lg hover:bg-slate-100"
+            id="menuBtn"
+            aria-label="Menu"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div
+        id="mobileMenu"
+        class="md:hidden hidden border-t border-slate-200 bg-white"
+      >
+        <div class="container py-3 grid gap-2 text-[15px]">
+          <a class="py-2" href="#courses">Courses</a>
+          <a class="py-2" href="#topics">Topics</a>
+          <a class="py-2" href="#practice">Practice</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== Hero (brand) ===== -->
+    <section class="relative overflow-hidden bg-sky-50 border-b border-sky-100">
+      <div class="container pt-16 md:pt-20 pb-10 md:pb-14">
+        <div class="">
+          <h1
+            class="mt-4 text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900"
+          >
+            A zappier way to ace IB Math
+          </h1>
+          <p class="mt-4 text-lg text-slate-600">
+            Crystal‑clear notes, exam‑style questions, and step‑by‑step
+            solutions.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#courses"
+              class="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+              >Start learning</a
+            >
+            <a
+              href="#topics"
+              class="inline-flex items-center gap-2 rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold hover:bg-slate-50"
+              >Browse topics</a
+            >
+          </div>
+          <div class="mt-6 flex flex-wrap gap-6 text-sm text-slate-600">
+            <span class="inline-flex items-center gap-2"
+              ><svg
+                viewBox="0 0 24 24"
+                class="w-5 h-5 text-brand-600"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 13l4 4L19 7" /></svg>Exam‑style practice</span
+            >
+            <span class="inline-flex items-center gap-2"
+              ><svg
+                viewBox="0 0 24 24"
+                class="w-5 h-5 text-brand-600"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M12 8v8m-4-4h8" /></svg              >Step‑by‑step hints</span
+            >
+            <span class="inline-flex items-center gap-2"
+              ><svg
+                viewBox="0 0 24 24"
+                class="w-5 h-5 text-brand-600"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M3 12h18" /></svg              >Clean solutions</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Quick Course Pick ===== -->
+    <!-- ===== Courses (amber band) ===== -->
+    <section class="relative border-y border-violet-100 bg-violet-50/40">
+      <div id="courses" class="container pt-16 md:pt-20 pb-10 md:pb-14">
+        <div class="grid md:grid-cols-2 gap-4 md:gap-6">
+          <!-- AA -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-card">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-xs font-semibold text-slate-500">IB Mathematics</div>
+                <h3 class="mt-0.5 text-xl font-bold text-slate-900">Analysis &amp; Approaches</h3>
+              </div>
+              <span class="inline-grid w-10 h-10 place-items-center rounded-xl bg-brand-100 text-brand-700 font-bold">∫</span>
+            </div>
+            <div class="mt-4 grid grid-cols-2 gap-3 text-[15px]">
+              <a href="#" class="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-2.5 hover:bg-slate-50"><span>SL</span><span>›</span></a>
+              <a href="#" class="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-2.5 hover:bg-slate-50"><span>HL</span><span>›</span></a>
+            </div>
+          </div>
+          <!-- AI -->
+          <!-- <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-card">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-xs font-semibold text-slate-500">IB Mathematics</div>
+                <h3 class="mt-0.5 text-xl font-bold text-slate-900">Applications &amp; Interpretation</h3>
+              </div>
+            <span class="inline-grid w-10 h-10 place-items-center rounded-xl bg-sky-100 text-sky-700 font-bold">Σ</span>
+            </div>
+            <div class="mt-4 grid grid-cols-2 gap-3 text-[15px]">
+              <a href="#" class="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-2.5 hover:bg-slate-50"><span>SL</span><span>›</span></a>
+              <a href="#" class="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-2.5 hover:bg-slate-50"><span>HL</span><span>›</span></a>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== Explore topics (single section) ===== -->
+    <section id="topics" class="border-y border-slate-100 bg-white">
+      <div class="container py-12 md:py-16">
+        <div class="flex items-end justify-between gap-6">
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-900">
+              Explore topics
+            </h2>
+            <p class="mt-2 text-slate-600">
+              Mapped to the latest IB syllabus for AA.
+            </p>
+          </div>
+          <a
+            href="#"
+            class="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-brand-800"
+            >View all
+            <svg
+              viewBox="0 0 24 24"
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+        <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          <!-- Topic 1 -->
+          <a
+            href="#"
+            class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-card hover:border-brand-300"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-xs font-semibold text-slate-500">Topic 1</div>
+                <div class="mt-0.5 text-lg font-semibold">Number & Algebra</div>
+              </div>
+              <span
+                class="rounded-full bg-brand-100 text-brand-700 text-xs font-semibold px-3 py-1"
+                >48 Qs</span
+              >
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
+              <span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Sequences</span
+              ><span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Exponents</span
+              ><span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Logs</span
+              >
+            </div>
+          </a>
+          <!-- Topic 2 -->
+          <a
+            href="#"
+            class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-card hover:border-brand-300"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-xs font-semibold text-slate-500">Topic 2</div>
+                <div class="mt-0.5 text-lg font-semibold">Functions</div>
+              </div>
+              <span
+                class="rounded-full bg-brand-100 text-brand-700 text-xs font-semibold px-3 py-1"
+                >62 Qs</span
+              >
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
+              <span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Transformations</span
+              ><span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Inverse</span
+              ><span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Composite</span
+              >
+            </div>
+          </a>
+          <!-- Topic 3 -->
+          <a
+            href="#"
+            class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-card hover:border-brand-300"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-xs font-semibold text-slate-500">Topic 3</div>
+                <div class="mt-0.5 text-lg font-semibold">
+                  Geometry & Trigonometry
+                </div>
+              </div>
+              <span
+                class="rounded-full bg-brand-100 text-brand-700 text-xs font-semibold px-3 py-1"
+                >54 Qs</span
+              >
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
+              <span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Trig Identities</span
+              ><span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Vectors</span
+              ><span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Triangles</span
+              >
+            </div>
+          </a>
+          <!-- Topic 4 -->
+          <a
+            href="#"
+            class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-card hover:border-brand-300"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-xs font-semibold text-slate-500">Topic 4</div>
+                <div class="mt-0.5 text-lg font-semibold">
+                  Statistics & Probability
+                </div>
+              </div>
+              <span
+                class="rounded-full bg-brand-100 text-brand-700 text-xs font-semibold px-3 py-1"
+                >39 Qs</span
+              >
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
+              <span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Distributions</span
+              ><span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Combinatorics</span
+              ><span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Regression</span
+              >
+            </div>
+          </a>
+          <!-- Topic 5 -->
+          <a
+            href="#"
+            class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-card hover:border-brand-300"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-xs font-semibold text-slate-500">Topic 5</div>
+                <div class="mt-0.5 text-lg font-semibold">Calculus</div>
+              </div>
+              <span
+                class="rounded-full bg-brand-100 text-brand-700 text-xs font-semibold px-3 py-1"
+                >41 Qs</span
+              >
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
+              <span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Limits</span
+              ><span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Differentiation</span
+              ><span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Integration</span
+              >
+            </div>
+          </a>
+          <!-- Topic 6 -->
+          <a
+            href="#"
+            class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-card hover:border-brand-300"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-xs font-semibold text-slate-500">Topic 6</div>
+                <div class="mt-0.5 text-lg font-semibold">Exploration (IA)</div>
+              </div>
+              <span
+                class="rounded-full bg-brand-100 text-brand-700 text-xs font-semibold px-3 py-1"
+                >Guides</span
+              >
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
+              <span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Choosing a topic</span
+              ><span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Structure</span
+              ><span
+                class="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1"
+                >Assessment</span
+              >
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Practice preview ===== -->
+<section id="practice" class="relative border-y border-violet-100 bg-violet-50/40">
+  <div class="container py-14 md:py-20">
+    <div class="grid md:grid-cols-5 gap-10 items-start">
+      <!-- Left copy -->
+      <div class="md:col-span-2">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Practice that teaches</h2>
+        <p class="mt-3 text-slate-600 max-w-prose">
+          Solve exam-style questions with instant hints and clean solutions.
+          Generate new sets for any subtopic and track what to review next.
+        </p>
+        <ul class="mt-6 grid gap-3 text-sm text-slate-700">
+          <li class="flex items-start gap-3">
+            <span class="mt-1 w-5 h-5 inline-grid place-items-center rounded-full bg-brand-100 text-brand-700">
+              <svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+            </span>
+            Paper 1 &amp; Paper 2 modes
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 w-5 h-5 inline-grid place-items-center rounded-full bg-brand-100 text-brand-700">
+              <svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+            </span>
+            Hints and full solutions
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 w-5 h-5 inline-grid place-items-center rounded-full bg-brand-100 text-brand-700">
+              <svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+            </span>
+            Mild / Medium / Spicy levels
+          </li>
+        </ul>
+        
+      </div>
+
+      <!-- Right: Question box mock -->
+      <div class="relative md:col-span-3">
+        <!-- Question mock (no outer white wrapper) -->
+        <section aria-label="Question card demo">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
+            <!-- Left panel -->
+            <article class="lg:col-span-9 rounded-2xl border border-slate-200 bg-white shadow-card flex flex-col">
+              <div class="relative flex items-center justify-between px-6 py-4 border-b border-slate-200">
+                <!-- Left: calc allowed? -->
+                <div class="flex items-center gap-2">
+                  <span class="hidden sm:inline text-[11px] font-semibold rounded-full px-2 py-1 border text-sky-700 bg-slate-50 border-sky-200">NO CALCULATOR</span>
+                  <span class="sm:hidden flex items-center justify-center" aria-label="No calculator">
+                    <svg viewBox="0 0 24 24" class="w-6 h-6" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
+                      <rect x="7" y="4" width="10" height="4" rx="1" stroke="none" fill="#cbd5e1" />
+                      <circle cx="8" cy="11" r="1" fill="none" />
+                      <circle cx="12" cy="11" r="1" fill="none" />
+                      <circle cx="16" cy="11" r="1" fill="none" />
+                      <circle cx="8" cy="15" r="1" fill="none" />
+                      <circle cx="12" cy="15" r="1" fill="none" />
+                      <circle cx="16" cy="15" r="1" fill="none" />
+                      <circle cx="8" cy="19" r="1" fill="none" />
+                      <circle cx="12" cy="19" r="1" fill="none" />
+                      <circle cx="16" cy="19" r="1" fill="none" />
+                      <line x1="5" y1="3" x2="19" y2="21" stroke="#64748b" stroke-width="2.25" />
+                    </svg>
+                  </span>
+                </div>
+
+                <!-- Middle: difficulty -->
+                <div class="absolute left-1/2 -translate-x-1/2 flex items-center gap-2">
+                  <span class="text-sm text-orange-500 font-medium">Medium</span>
+                  <span class="inline-flex items-center gap-1" aria-hidden="true">
+                    <span class="w-[6px] h-[6px] rounded-full inline-block bg-orange-400"></span>
+                    <span class="w-[6px] h-[6px] rounded-full inline-block bg-orange-400"></span>
+                    <span class="w-[6px] h-[6px] rounded-full inline-block bg-slate-300"></span>
+                  </span>
+                </div>
+
+                <!-- Right actions -->
+                <div class="flex items-center gap-2 text-slate-400">
+                  <button class="group relative p-1.5 rounded-md hover:bg-slate-100" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24" class="w-5 h-5"><path fill="currentColor" d="M6 2h12a1 1 0 0 1 1 1v19l-7-3-7 3V3a1 1 0 0 1 1-1z"/></svg>
+                    <span class="absolute -bottom-9 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-1 text-xs rounded-md bg-slate-800 text-white opacity-0 group-hover:opacity-100 transition">Bookmark</span>
+                  </button>
+                  <button class="group relative p-1.5 rounded-md hover:bg-slate-100" aria-label="Mark as complete">
+                    <svg viewBox="0 0 24 24" class="w-5 h-5"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+                    <span class="absolute -bottom-9 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-1 text-xs rounded-md bg-slate-800 text-white opacity-0 group-hover:opacity-100 transition">Mark as Complete</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="px-6 py-6 flex-1 text-base leading-8 text-slate-800">
+                <p class="mt-0">1) If a sequence has a<sub>1</sub> = 5 and common difference d = 3, find a<sub>20</sub>.</p>
+                <p>2) Solve for x: 2·3<sup>x</sup> = 54.</p>
+                <p>3) Find the inverse of f(x) = (2x − 3)/(x + 4).</p>
+              </div>
+            </article>
+
+            <!-- Right tools -->
+            <aside class="lg:col-span-3 h-full">
+              <div class="h-full rounded-2xl border border-slate-200 bg-white shadow-card p-3 flex flex-col gap-2">
+                <button id="open-mark-scheme" class="w-full rounded-xl px-3 py-2 text-sm font-medium text-sky-700 bg-[#d8edff] border border-[#bfe1ff] hover:bg-[#bfe1ff] focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 text-center">Mark Scheme</button>
+                <button id="open-video-solution" class="w-full rounded-xl px-3 py-2 text-sm font-medium text-slate-800 bg-white border border-slate-200 hover:bg-slate-50 text-center">Video Solutions</button>
+              </div>
+            </aside>
+          </div>
+
+          <!-- Modal (Mark Scheme) -->
+          <div id="markSchemeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center" aria-modal="true" role="dialog" aria-labelledby="ms-title-1">
+            <button id="ms-backdrop" type="button" aria-label="Close" class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></button>
+            <div class="relative z-10 w-full sm:max-w-3xl bg-white shadow-xl border border-slate-200 rounded-2xl sm:mx-4 overflow-hidden" style="max-height:90vh;">
+              <div class="sm:hidden flex justify-center pt-2"><span class="h-1.5 w-10 rounded-full bg-slate-200"></span></div>
+              <div class="sticky top-0 z-10 bg-white/95 backdrop-blur px-4 py-3 border-b border-slate-200 flex items-center justify-between">
+                <h3 id="ms-title-1" class="text-sm font-semibold text-slate-800">Mark Scheme</h3>
+                <button id="close-ms" class="p-2 -mr-1 rounded-md hover:bg-slate-100 active:bg-slate-200" aria-label="Close mark scheme">
+                  <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6 7.1 5.7a1 1 0 1 0-1.4 1.4L10.6 12l-4.9 4.9a1 1 0 1 0 1.4 1.4l4.9-4.9 4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4z"/></svg>
+                </button>
+              </div>
+              <div class="flex-1 overflow-y-auto px-4 py-4 text-[0.95rem] leading-7">
+                <p><strong>1)</strong> a<sub>n</sub> = a<sub>1</sub> + (n−1)d ⇒ a<sub>20</sub> = 5 + 19·3 = 62.</p>
+                <p><strong>2)</strong> 2·3<sup>x</sup> = 54 ⇒ 3<sup>x</sup> = 27 ⇒ x = 3.</p>
+                <p><strong>3)</strong> y = (2x − 3)/(x + 4) ⇒ x = (3 + 4y)/(2 − y) ⇒ f<sup>−1</sup>(x) = (3 + 4x)/(2 − x).</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- ===== CTA ===== -->
+    <section class="container py-14 md:py-16 ">
+      <div
+        class="rounded-3xl border border-sky-200 bg-sky-100 p-8 md:p-10 shadow-card"
+      >
+        <div class="grid md:grid-cols-2 gap-6 items-center">
+          <div>
+            <h3 class="text-xl md:text-2xl font-extrabold text-sky-900">
+              Ready to study smarter?
+            </h3>
+            <p class="mt-2 text-slate-700">
+              Everything here is free while we’re in beta. No exam packs or
+              paywalls.
+            </p>
+          </div>
+          <div class="flex md:justify-end gap-3">
+            <a
+              href="#topics"
+              class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold hover:bg-slate-50"
+              >Explore topics</a
+            >
+            <a
+              href="#courses"
+              class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+              >Start free</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="border-t border-slate-200 bg-white/80">
+      <div class="container py-10 grid md:grid-cols-4 gap-8 text-sm">
+        <div>
+          <div class="inline-flex items-center gap-2 font-bold text-slate-900">
+            <img src="/ask-zappy-logo.svg" alt="Ask Zappy" class="h-8 w-auto" />
+            <span>Ask Zappy</span>
+          </div>
+          <p class="mt-3 text-slate-600">
+            Clean, focused resources for IB Mathematics AA.
+          </p>
+        </div>
+        <div>
+          <div class="font-semibold text-slate-900">Product</div>
+          <ul class="mt-3 grid gap-2">
+            <li><a href="#courses" class="hover:text-slate-900">Courses</a></li>
+            <li><a href="#topics" class="hover:text-slate-900">Topics</a></li>
+            <li>
+              <a href="#practice" class="hover:text-slate-900">Practice</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <div class="font-semibold text-slate-900">Support</div>
+          <ul class="mt-3 grid gap-2">
+            <li><a href="#" class="hover:text-slate-900">Help Center</a></li>
+            <li><a href="#" class="hover:text-slate-900">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="font-semibold text-slate-900">Legal</div>
+          <ul class="mt-3 grid gap-2">
+            <li><a href="#" class="hover:text-slate-900">Terms</a></li>
+            <li><a href="#" class="hover:text-slate-900">Privacy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-slate-200">
+        <div class="container py-6 text-xs text-slate-500">
+          © <span id="year"></span> Ask Zappy. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Year
+      const y = document.getElementById("year");
+      if (y) y.textContent = new Date().getFullYear();
+      // Mobile menu
+      const mb = document.getElementById("menuBtn");
+      const mm = document.getElementById("mobileMenu");
+      if (mb && mm)
+        mb.addEventListener("click", () => mm.classList.toggle("hidden"));
+    </script>
+  </body>
+</html>

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -95,17 +94,6 @@ export default function Topics({
               can focus on the concepts that matter most.
             </p>
           </div>
-          <div className="md:col-span-1">
-            <div className="flex md:justify-end">
-              <Image
-                src="/icon-aa-badge.svg"
-                alt="Analysis & Approaches"
-                width={112}
-                height={112}
-                className="w-28 h-28"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -179,7 +167,9 @@ export default function Topics({
             <div className="mt-auto pt-5">
               <Link
                 href={`/ib-math/analysis-and-approaches/question-bank/${level}/${topicLink}/${subTopic.link}`}
-                className="inline-flex items-center justify-center w-full rounded-full border border-slate-300 px-4 py-2.5 text-sm font-medium hover:bg-slate-50"
+                className="inline-flex items-center justify-center w-full rounded-full border
+                   text-[#1166c3] bg-[#d8edff]  border-[#bfe1ff] hover:bg-[#bfe1ff] 
+                 px-4 py-2.5 text-sm font-medium"
               >
                 Open Study
               </Link>
