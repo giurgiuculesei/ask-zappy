@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Page() {
   return (
     <>
@@ -12,18 +14,18 @@ export default function Page() {
               solutions.
             </p>
             <div className="mt-8 flex flex-wrap gap-3 ">
-              <a
-                href="#courses"
+              <Link
+                href="/ib-math/analysis-and-approaches/question-bank/sl/number-and-algebra/all-concepts"
                 className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800"
               >
                 Start learning
-              </a>
-              <a
-                href="#topics"
+              </Link>
+              <Link
+                href="/ib-math/analysis-and-approaches/question-bank/sl"
                 className="inline-flex items-center gap-2 rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold hover:bg-slate-50"
               >
                 Browse topics
-              </a>
+              </Link>
             </div>
 
             <div className="mt-6 flex flex-wrap gap-6 text-sm">
@@ -91,20 +93,21 @@ export default function Page() {
                 </div>
 
                 <div className="mt-4 grid grid-cols-2 gap-3 text-[15px]">
-                  <a
-                    href="#"
+                  <Link
+                    href="/ib-math/analysis-and-approaches/question-bank/sl"
                     className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-2.5 hover:bg-slate-50"
                   >
                     <span>SL</span>
                     <span>›</span>
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+
+                  <Link
+                    href="/ib-math/analysis-and-approaches/question-bank/hl"
                     className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-2.5 hover:bg-slate-50"
                   >
                     <span>HL</span>
                     <span>›</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -122,8 +125,9 @@ export default function Page() {
                   Mapped to the latest IB syllabus for AA.
                 </p>
               </div>
-              <a
-                href="#"
+
+              <Link
+                href="/ib-math/analysis-and-approaches/question-bank/sl"
                 className="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-indigo-700 hover:text-indigo-800"
               >
                 View all
@@ -137,13 +141,13 @@ export default function Page() {
                 >
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
-              </a>
+              </Link>
             </div>
 
             <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {/* Topic 1 */}
-              <a
-                href="#"
+              <Link
+                href="/ib-math/analysis-and-approaches/question-bank/sl/number-and-algebra/all-concepts"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow hover:border-indigo-300"
               >
                 <div className="flex items-center justify-between">
@@ -170,11 +174,11 @@ export default function Page() {
                     Logs
                   </span>
                 </div>
-              </a>
+              </Link>
 
               {/* Topic 2 */}
-              <a
-                href="#"
+              <Link
+                href="/ib-math/analysis-and-approaches/question-bank/sl/functions/all-concepts"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow hover:border-indigo-300"
               >
                 <div className="flex items-center justify-between">
@@ -201,7 +205,7 @@ export default function Page() {
                     Composite
                   </span>
                 </div>
-              </a>
+              </Link>
 
               {/* Topic 3 */}
               <a
@@ -507,15 +511,72 @@ export default function Page() {
                         </div>
                       </div>
 
-                      <div className="px-6 py-6 flex-1 text-base leading-8 text-slate-800">
-                        <p className="mt-0">
-                          1) If a sequence has a<sub>1</sub> = 5 and common
-                          difference d = 3, find a<sub>20</sub>.
-                        </p>
-                        <p>
-                          2) Solve for x: 2·3<sup>x</sup> = 54.
-                        </p>
-                        <p>3) Find the inverse of f(x) = (2x − 3)/(x + 4).</p>
+                      <div className=" px-5 py-5 flex-1">
+                        <div
+                          className="
+                              question-content
+                              prose prose-slate max-w-none
+                              text-[0.8rem] sm:text-[0.95rem] lg:text-[1.05rem]
+                              leading-[1.6] sm:leading-[1.65] lg:leading-[1.7]
+
+                              prose-p:mt-0
+                              prose-p:mb-3 lg:prose-p:mb-4
+                              prose-p:last:mb-0
+                              
+                              prose-table:w-full
+                              prose-table:border-separate    
+                              prose-table:mt-0
+                              prose-table:mb-0
+                              
+                              prose-th:p-0              
+                              prose-td:text-[0.8rem] prose-td:sm:text-[0.95rem] prose-td:lg:text-[1.05rem]                          
+                              prose-td:leading-[1.6] prose-td:sm:leading-[1.65] prose-td:lg:leading-[1.7]
+                      
+                      "
+                        >
+                          <p>[Maximum mark: 5]</p>
+
+                          <p>
+                            A company’s revenue in year 0 is <var>R</var>
+                            <sub>0</sub> = 8.0 × 10
+                            <sup>5</sup> dollars. Each year, the revenue is
+                            multiplied by a constant factor <var>k</var> with 1
+                            &lt; <var>k</var> &lt; 1.2. After <var>n</var>{" "}
+                            years, the revenue is <var>R</var>
+                            <sub>n</sub> = <var>R</var>
+                            <sub>0</sub> <var>k</var>
+                            <sup>n</sup>.
+                          </p>
+
+                          <table>
+                            <thead>
+                              <tr>
+                                <th align="left"></th>
+                                <th align="right"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td align="left">
+                                  <strong>(a)</strong> Given <var>R</var>
+                                  <sub>3</sub> = 1.10 × 10
+                                  <sup>6</sup>, find <var>k</var> correct to 3
+                                  significant figures.
+                                </td>
+                                <td align="right">[2]</td>
+                              </tr>
+                              <tr>
+                                <td align="left">
+                                  <strong>(b)</strong> Find the least integer{" "}
+                                  <var>n</var> such that <var>R</var>
+                                  <sub>n</sub> ≥ 1.5 × 10
+                                  <sup>6</sup>.
+                                </td>
+                                <td align="right">[3]</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </article>
 
@@ -614,18 +675,18 @@ export default function Page() {
                 </p>
               </div>
               <div className="flex md:justify-end gap-3">
-                <a
-                  href="#topics"
+                <Link
+                  href="/ib-math/analysis-and-approaches/question-bank/sl"
                   className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold hover:bg-slate-50"
                 >
                   Explore topics
-                </a>
-                <a
-                  href="#courses"
+                </Link>
+                <Link
+                  href="/ib-math/analysis-and-approaches/question-bank/sl/number-and-algebra/all-concepts"
                   className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white hover:bg-slate-800"
                 >
                   Start free
-                </a>
+                </Link>
               </div>
             </div>
           </div>
