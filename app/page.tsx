@@ -1,6 +1,28 @@
+"use client";
+
+import "katex/dist/katex.min.css";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 export default function Page() {
+  const [open, setOpen] = useState(false);
+  const dialogRef = useRef<HTMLDivElement | null>(null);
+
+  // Close on Esc, lock scroll
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [open]);
+
   return (
     <>
       <main>
@@ -339,11 +361,11 @@ export default function Page() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
             <div className="grid md:grid-cols-5 gap-10 items-start">
               {/* Left copy */}
-              <div className="md:col-span-2">
+              <div className="md:col-span-5">
                 <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
                   Practice that teaches
                 </h2>
-                <p className="mt-3 text-slate-600 max-w-prose">
+                <p className="mt-3 text-slate-600">
                   Solve exam-style questions with instant hints and clean
                   solutions. Generate new sets for any subtopic and track what
                   to review next.
@@ -401,7 +423,7 @@ export default function Page() {
               </div>
 
               {/* Right: Question box mock */}
-              <div className="relative md:col-span-3">
+              <div className="relative md:col-span-5 md:col-start-1 md:mt-8">
                 <section aria-label="Question card demo">
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
                     {/* Left panel */}
@@ -584,78 +606,196 @@ export default function Page() {
                     <aside className="lg:col-span-3 h-full">
                       <div className="h-full rounded-2xl border border-slate-200 bg-white shadow p-3 flex flex-col gap-2">
                         <button
-                          id="open-mark-scheme"
-                          className="w-full rounded-xl px-3 py-2 text-sm font-medium text-sky-700 bg-[#d8edff] border border-[#bfe1ff] hover:bg-[#bfe1ff] focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 text-center"
+                          onClick={() => setOpen(true)}
+                          className="w-full block rounded-xl px-3 py-2 text-sm font-medium
+                             text-[#1166c3] bg-[#d8edff] border border-[#bfe1ff]
+                             hover:bg-[#bfe1ff] cursor-pointer
+                             focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/60
+                             text-center lg:flex lg:items-center lg:justify-between lg:text-left"
                         >
-                          Mark Scheme
+                          <span className="w-full">Mark Scheme</span>
                         </button>
+
                         <button
                           id="open-video-solution"
-                          className="w-full rounded-xl px-3 py-2 text-sm font-medium text-slate-800 bg-white border border-slate-200 hover:bg-slate-50 text-center"
+                          className="w-full block rounded-xl px-3 py-2 text-sm font-medium
+                             text-slate-800 bg-white border border-slate-200 cursor-pointer
+                             hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300/60
+                             text-center lg:flex lg:items-center lg:justify-between lg:text-left"
                         >
-                          Video Solutions
+                          <span className="w-full">Video Solutions</span>
                         </button>
                       </div>
                     </aside>
                   </div>
 
-                  {/* Modal (Mark Scheme) */}
-                  <div
-                    id="markSchemeModal"
-                    className="hidden fixed inset-0 z-50 flex items-center justify-center"
-                    aria-modal="true"
-                    role="dialog"
-                    aria-labelledby="ms-title-1"
-                  >
-                    <button
-                      id="ms-backdrop"
-                      type="button"
-                      aria-label="Close"
-                      className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
-                    />
+                  {/* ---- Modal (Mark Scheme) ---- */}
+                  {open && (
                     <div
-                      className="relative z-10 w-full sm:max-w-3xl bg-white shadow-xl border border-slate-200 rounded-2xl sm:mx-4 overflow-hidden"
-                      style={{ maxHeight: "90vh" }}
+                      className="fixed inset-0 z-50 flex items-center justify-center"
+                      aria-modal="true"
+                      role="dialog"
+                      aria-labelledby={`ms-title-question`}
                     >
-                      <div className="sm:hidden flex justify-center pt-2">
-                        <span className="h-1.5 w-10 rounded-full bg-slate-200" />
-                      </div>
-                      <div className="sticky top-0 z-10 bg-white/95 backdrop-blur px-4 py-3 border-b border-slate-200 flex items-center justify-between">
-                        <h3
-                          id="ms-title-1"
-                          className="text-sm font-semibold text-slate-800"
+                      {/* Backdrop (click to close) */}
+                      <button
+                        type="button"
+                        onClick={() => setOpen(false)}
+                        aria-label="Close"
+                        className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+                      />
+
+                      {/* Dialog */}
+                      <div
+                        ref={dialogRef}
+                        // Mobile: bottom sheet with rounded top; Desktop: centered card
+                        className="
+            flex flex-col
+        relative z-10 w-full sm:max-w-3xl
+        bg-white shadow-xl border border-slate-200
+        sm:rounded-2xl sm:rounded-t-2xl
+        rounded-2xl 
+        sm:mx-4
+        overflow-hidden
+      "
+                        style={{
+                          height: "90svh",
+                          maxHeight: "90vh",
+                          //marginBottom: "calc(env(safe-area-inset-bottom) + 16px)", // lift off bottom safely
+                        }}
+                      >
+                        {/* Drag handle (mobile only) */}
+                        <div className="sm:hidden flex justify-center pt-2">
+                          <span className="h-1.5 w-10 rounded-full bg-slate-200" />
+                        </div>
+
+                        {/* Header (sticky) */}
+                        <div
+                          className="
+          sticky top-0 z-10
+          bg-white/95 backdrop-blur
+          px-4 py-3 border-b border-slate-200
+          flex items-center justify-between
+        "
                         >
-                          Mark Scheme
-                        </h3>
-                        <button
-                          id="close-ms"
-                          className="p-2 -mr-1 rounded-md hover:bg-slate-100 active:bg-slate-200"
-                          aria-label="Close mark scheme"
+                          <h3 className="text-sm font-semibold text-slate-800">
+                            Mark Scheme
+                          </h3>
+
+                          <button
+                            onClick={() => setOpen(false)}
+                            className="p-2 -mr-1 rounded-md hover:bg-slate-100 active:bg-slate-200"
+                            aria-label="Close mark scheme"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              className="size-6"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6 7.1 5.7a1 1 0 1 0-1.4 1.4L10.6 12l-4.9 4.9a1 1 0 1 0 1.4 1.4l4.9-4.9 4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4z"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+
+                        {/* Scroll area */}
+                        <div
+                          className="flex-1 overflow-y-auto px-4 py-4"
+                          style={{ WebkitOverflowScrolling: "touch" }}
                         >
-                          <svg viewBox="0 0 24 24" className="w-6 h-6">
-                            <path
-                              fill="currentColor"
-                              d="M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6 7.1 5.7a1 1 0 1 0-1.4 1.4L10.6 12l-4.9 4.9a1 1 0 1 0 1.4 1.4l4.9-4.9 4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4z"
-                            />
-                          </svg>
-                        </button>
-                      </div>
-                      <div className="flex-1 overflow-y-auto px-4 py-4 text-[0.95rem] leading-7">
-                        <p>
-                          <strong>1)</strong> a<sub>n</sub> = a<sub>1</sub> +
-                          (n−1)d ⇒ a<sub>20</sub> = 5 + 19·3 = 62.
-                        </p>
-                        <p>
-                          <strong>2)</strong> 2·3<sup>x</sup> = 54 ⇒ 3
-                          <sup>x</sup> = 27 ⇒ x = 3.
-                        </p>
-                        <p>
-                          <strong>3)</strong> y = (2x − 3)/(x + 4) ⇒ x = (3 +
-                          4y)/(2 − y) ⇒ f<sup>−1</sup>(x) = (3 + 4x)/(2 − x).
-                        </p>
+                          {/* Mark scheme block */}
+                          <div>
+                            <div
+                              className="
+                                question-content
+                                prose prose-slate max-w-none
+                                text-[0.8rem] sm:text-[0.95rem] lg:text-[1.05rem]
+                                leading-[1.6] sm:leading-[1.65] lg:leading-[1.7]
+
+                                prose-p:mt-0
+                                prose-p:mb-3 lg:prose-p:mb-4
+                                prose-p:last:mb-0
+                                
+                                prose-table:w-full
+                                prose-table:border-separate    
+                                prose-table:mt-0
+                                prose-table:mb-0
+                                
+                                prose-th:p-0              
+                                prose-td:text-[0.8rem] prose-td:sm:text-[0.95rem] prose-td:lg:text-[1.05rem]                          
+                                prose-td:leading-[1.6] prose-td:sm:leading-[1.65] prose-td:lg:leading-[1.7]"
+                            >
+                              <p>
+                                <strong>(a)</strong> Using <var>R</var>
+                                <sub>3</sub> = <var>R</var>
+                                <sub>0</sub> <var>k</var>
+                                <sup>3</sup>:
+                              </p>
+
+                              <p>
+                                <var>k</var>
+                                <sup>3</sup> = <var>R</var>
+                                <sub>3</sub>/<var>R</var>
+                                <sub>0</sub> = (1.10 × 10<sup>6</sup>)/(8.0 × 10
+                                <sup>5</sup>) = 1.375.
+                              </p>
+
+                              <p>
+                                <var>k</var> = 1.375<sup>1/3</sup> ≈ 1.112 ⇒{" "}
+                                <span className="inline-block rounded border border-slate-300 px-1.5 py-0.5">
+                                  k = 1.11 (3 s.f.)
+                                </span>
+                                .
+                              </p>
+
+                              <p>
+                                <strong>(b)</strong> Require <var>R</var>
+                                <sub>0</sub> <var>k</var>
+                                <sup>n</sup> ≥ 1.5 × 10<sup>6</sup>:
+                              </p>
+
+                              <p>
+                                <var>k</var>
+                                <sup>n</sup> ≥ (1.5 × 10<sup>6</sup>)/(8.0 × 10
+                                <sup>5</sup>) = 1.875.
+                              </p>
+
+                              <p>
+                                Using logs, n ≥ ln(1.875)/ln(<var>k</var>) ≈
+                                0.627/ln(1.112) ≈ 5.92.
+                              </p>
+
+                              <p>
+                                Hence the least integer is{" "}
+                                <span className="inline-block rounded border border-slate-300 px-1.5 py-0.5">
+                                  n = 6
+                                </span>
+                                .
+                              </p>
+
+                              <p>
+                                (Check): <var>k</var>
+                                <sup>6</sup> = (<var>k</var>
+                                <sup>3</sup>)<sup>2</sup> = (1.375)<sup>2</sup>{" "}
+                                = 1.890625 so
+                              </p>
+
+                              <p>
+                                <var>R</var>
+                                <sub>6</sub> = <var>R</var>
+                                <sub>0</sub> <var>k</var>
+                                <sup>6</sup> = (8.0 × 10<sup>5</sup>) × 1.890625
+                                = 1.5125 × 10
+                                <sup>6</sup> ≥ 1.5 × 10<sup>6</sup>.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </section>
               </div>
             </div>
