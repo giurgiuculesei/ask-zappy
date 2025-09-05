@@ -290,7 +290,7 @@ export default function Header() {
   );
 }
 
-/* ---------- Mobile Subjects ---------- */
+/* ---------- Mobile Subjects (3 top-level menus) ---------- */
 function MobileSubjects({
   open,
   setOpen,
@@ -324,10 +324,11 @@ function MobileSubjects({
           open ? "max-h-[70vh]" : "max-h-0",
         ].join(" ")}
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 space-y-1">
+          {/* 1) SUBJECTS (submenu per subject) */}
           <details open className="group">
             <summary className="cursor-pointer list-none py-2 flex items-center justify-between text-[15px] font-semibold text-slate-900 tracking-tight">
-              <span>IB Math</span>
+              <span>Subjects</span>
               <svg
                 className="w-4 h-4 text-slate-500 transition-transform group-open:rotate-180"
                 fill="none"
@@ -338,59 +339,97 @@ function MobileSubjects({
               </svg>
             </summary>
 
-            <div className="pl-2 pt-1 pb-3 space-y-4">
-              <div>
-                <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                  IB Math AA SL
-                </div>
-                <Link
-                  href="/ib-math/analysis-and-approaches/question-bank/sl"
-                  className="mt-1 block text-[15px] font-medium text-slate-700 hover:text-slate-900 hover:font-semibold transition cursor-pointer"
-                  onClick={() => setOpen(false)}
-                >
-                  Question Bank
-                </Link>
-              </div>
+            <div className="pl-2 pb-2 space-y-1">
+              {SUBJECTS.map((s) => (
+                <details key={s.id} className="group">
+                  <summary className="cursor-pointer list-none py-2 flex items-center justify-between text-[15px] font-medium text-slate-700">
+                    <span>{s.label}</span>
+                    <svg
+                      className="w-4 h-4 text-slate-500 transition-transform group-open:rotate-180"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeWidth={2} d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
 
-              <div>
-                <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                  IB Math AA HL
-                </div>
-                <Link
-                  href="/ib-math/analysis-and-approaches/question-bank/hl"
-                  className="mt-1 block text-[15px] font-medium text-slate-700 hover:text-slate-900 hover:font-semibold transition cursor-pointer"
-                  onClick={() => setOpen(false)}
-                >
-                  Question Bank
-                </Link>
-              </div>
+                  {/* Per-subject links (only IB Math has real links for now) */}
+                  {s.columns ? (
+                    <div className="pl-2 pb-3 space-y-4">
+                      {s.columns.map((col) => (
+                        <div key={col.title}>
+                          <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                            {col.title}
+                          </div>
+                          {col.links.map((link) => (
+                            <Link
+                              key={link.href}
+                              href={link.href}
+                              className="mt-1 block text-[15px] font-medium text-slate-700 hover:text-slate-900 hover:font-semibold transition"
+                              onClick={() => setOpen(false)}
+                            >
+                              {link.label}
+                            </Link>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="pl-2 pb-3 text-sm text-slate-500">
+                      Coming soon
+                    </div>
+                  )}
+                </details>
+              ))}
             </div>
           </details>
 
-          {[
-            "IB Biology",
-            "IB Chemistry",
-            "IB Physics",
-            "IB Psychology",
-            "IB Economics",
-          ].map((label) => (
-            <details key={label} className="group">
-              <summary className="cursor-pointer list-none py-2 flex items-center justify-between text-[15px] font-medium text-slate-700">
-                <span>{label}</span>
-                <svg
-                  className="w-4 h-4 text-slate-500 transition-transform group-open:rotate-180"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeWidth={2} d="m6 9 6 6 6-6" />
-                </svg>
-              </summary>
-              <div className="pl-2 pb-3 text-sm text-slate-500">
-                Coming soon
-              </div>
-            </details>
-          ))}
+          {/* 2) EDUCATORS (placeholder for now) */}
+          <details className="group">
+            <summary className="cursor-pointer list-none py-2 flex items-center justify-between text-[15px] font-semibold text-slate-900 tracking-tight">
+              <span>Educators</span>
+              <svg
+                className="w-4 h-4 text-slate-500 transition-transform group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeWidth={2} d="m6 9 6 6 6-6" />
+              </svg>
+            </summary>
+            <div className="pl-2 pb-3 text-sm text-slate-500">
+              Coming soon
+              {/* Example future links (keep onClick to close):
+              <Link href="/educators/resources" onClick={() => setOpen(false)} className="block mt-1 text-[15px] text-slate-700 hover:text-slate-900">
+                Resources
+              </Link>
+              */}
+            </div>
+          </details>
+
+          {/* 3) STUDENTS (placeholder for now) */}
+          <details className="group">
+            <summary className="cursor-pointer list-none py-2 flex items-center justify-between text-[15px] font-semibold text-slate-900 tracking-tight">
+              <span>Students</span>
+              <svg
+                className="w-4 h-4 text-slate-500 transition-transform group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeWidth={2} d="m6 9 6 6 6-6" />
+              </svg>
+            </summary>
+            <div className="pl-2 pb-3 text-sm text-slate-500">
+              Coming soon
+              {/* Example future links:
+              <Link href="/students/getting-started" onClick={() => setOpen(false)} className="block mt-1 text-[15px] text-slate-700 hover:text-slate-900">
+                Getting Started
+              </Link>
+              */}
+            </div>
+          </details>
         </div>
       </div>
     </>
