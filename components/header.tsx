@@ -341,7 +341,7 @@ function MobileSubjects({
 
             <div className="pl-2 pb-2 space-y-1">
               {SUBJECTS.map((s) => (
-                <details key={s.id} className="group">
+                <details key={s.id} className="group" open={s.id === "ib-math"}>
                   <summary className="cursor-pointer list-none py-2 flex items-center justify-between text-[15px] font-medium text-slate-700">
                     <span>{s.label}</span>
                     <svg
