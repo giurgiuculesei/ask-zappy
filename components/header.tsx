@@ -3,6 +3,7 @@
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const inter = Inter({
@@ -48,20 +49,31 @@ const SUBJECTS: Subject[] = [
 ];
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [subjectsOpen, setSubjectsOpen] = useState(false); // desktop Subjects
+  const [mobileOpen, setMobileOpen] = useState(false); // mobile panel
   const [activeSubject, setActiveSubject] = useState<string>("ib-math");
+
   const panelRef = useRef<HTMLDivElement | null>(null);
   const btnRef = useRef<HTMLButtonElement | null>(null);
+  const pathname = usePathname();
 
+  // Close both menus on route change
   useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    setSubjectsOpen(false);
+    setMobileOpen(false);
+  }, [pathname]);
+
+  // Close desktop mega on Esc / click-away
+  useEffect(() => {
+    if (!subjectsOpen) return;
+    const onKey = (e: KeyboardEvent) =>
+      e.key === "Escape" && setSubjectsOpen(false);
     const onClickAway = (e: MouseEvent) => {
       const panel = panelRef.current;
       const btn = btnRef.current;
       if (!panel || !btn) return;
       const t = e.target as Node;
-      if (!panel.contains(t) && !btn.contains(t)) setOpen(false);
+      if (!panel.contains(t) && !btn.contains(t)) setSubjectsOpen(false);
     };
     document.addEventListener("keydown", onKey);
     document.addEventListener("mousedown", onClickAway);
@@ -69,7 +81,7 @@ export default function Header() {
       document.removeEventListener("keydown", onKey);
       document.removeEventListener("mousedown", onClickAway);
     };
-  }, [open]);
+  }, [subjectsOpen]);
 
   const current = SUBJECTS.find((s) => s.id === activeSubject);
 
@@ -84,9 +96,10 @@ export default function Header() {
       style={{ fontOpticalSizing: "auto" } as React.CSSProperties}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center">
-        {/* Brand */}
+        {/* Brand (closes mobile menu on tap) */}
         <Link
           href="/"
+          onClick={() => setMobileOpen(false)}
           className="flex items-center gap-2 cursor-pointer"
           aria-label="Ask Zappy home"
         >
@@ -102,17 +115,17 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Primary nav */}
+        {/* Primary nav (desktop) */}
         <nav className="ml-6 hidden md:flex items-center gap-6">
           {/* Subjects mega menu trigger */}
           <div className="relative">
             <button
               ref={btnRef}
               type="button"
-              onClick={() => setOpen((s) => !s)}
+              onClick={() => setSubjectsOpen((s) => !s)}
               className="inline-flex items-center gap-1 text-[15px] font-semibold text-slate-800 tracking-tight hover:text-slate-900 transition cursor-pointer"
               aria-haspopup="dialog"
-              aria-expanded={open}
+              aria-expanded={subjectsOpen}
               aria-controls="subjects-mega"
             >
               Subjects
@@ -127,18 +140,14 @@ export default function Header() {
             </button>
 
             {/* Mega panel */}
-            {open && (
+            {subjectsOpen && (
               <div className="fixed inset-x-0 top-16 z-50 px-3 sm:px-4 overscroll-contain">
                 <div
                   ref={panelRef}
                   id="subjects-mega"
                   role="dialog"
                   aria-label="Subjects"
-                  className="
-                    mx-auto w-full max-w-[min(1000px,calc(100vw-1.5rem))]
-                    rounded-2xl border border-slate-200 bg-white shadow-lg
-                    max-h-[min(80vh,640px)] overflow-auto
-                  "
+                  className="mx-auto w-full max-w-[min(1000px,calc(100vw-1.5rem))] rounded-2xl border border-slate-200 bg-white shadow-lg max-h-[min(80vh,640px)] overflow-auto"
                 >
                   <div className="grid grid-cols-12">
                     {/* Left rail */}
@@ -188,7 +197,7 @@ export default function Header() {
                                     <Link
                                       href={link.href}
                                       className="inline-flex items-center text-[15px] font-medium text-slate-700 hover:text-slate-900 hover:font-semibold transition cursor-pointer"
-                                      onClick={() => setOpen(false)}
+                                      onClick={() => setSubjectsOpen(false)}
                                     >
                                       {link.label}
                                     </Link>
@@ -210,7 +219,7 @@ export default function Header() {
             )}
           </div>
 
-          {/* --- Empty menus (no functionality) --- */}
+          {/* Empty menus */}
           <button
             type="button"
             disabled
@@ -229,7 +238,6 @@ export default function Header() {
               <path strokeWidth={2} d="m6 9 6 6 6-6" />
             </svg>
           </button>
-
           <button
             type="button"
             disabled
@@ -271,10 +279,11 @@ export default function Header() {
           <Link
             href="/premium"
             className="inline-flex items-center rounded-full bg-violet-600 px-4 py-2 text-white text-sm font-semibold hover:bg-violet-700 transition"
+            onClick={() => setMobileOpen(false)}
           >
             Try Premium
           </Link>
-          <MobileSubjects />
+          <MobileSubjects open={mobileOpen} setOpen={setMobileOpen} />
         </div>
       </div>
     </header>
@@ -282,8 +291,13 @@ export default function Header() {
 }
 
 /* ---------- Mobile Subjects ---------- */
-function MobileSubjects() {
-  const [open, setOpen] = useState(false);
+function MobileSubjects({
+  open,
+  setOpen,
+}: {
+  open: boolean;
+  setOpen: (v: boolean) => void;
+}) {
   return (
     <>
       <button
@@ -291,7 +305,7 @@ function MobileSubjects() {
         aria-label="Menu"
         aria-expanded={open}
         aria-controls="mobile-subjects"
-        onClick={() => setOpen((s) => !s)}
+        onClick={() => setOpen(!open)}
       >
         <svg
           className="w-5 h-5"
@@ -332,6 +346,7 @@ function MobileSubjects() {
                 <Link
                   href="/ib-math/analysis-and-approaches/question-bank/sl"
                   className="mt-1 block text-[15px] font-medium text-slate-700 hover:text-slate-900 hover:font-semibold transition cursor-pointer"
+                  onClick={() => setOpen(false)}
                 >
                   Question Bank
                 </Link>
@@ -344,6 +359,7 @@ function MobileSubjects() {
                 <Link
                   href="/ib-math/analysis-and-approaches/question-bank/hl"
                   className="mt-1 block text-[15px] font-medium text-slate-700 hover:text-slate-900 hover:font-semibold transition cursor-pointer"
+                  onClick={() => setOpen(false)}
                 >
                   Question Bank
                 </Link>
