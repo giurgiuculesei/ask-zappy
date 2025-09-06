@@ -55,7 +55,7 @@ export default function Topics({
   };
 
   const hero = (
-    <section className="bg-lucian-50 bg-[#EAF4FF]">
+    <section className="bg-lucian-50 bg-sky-50 border-b border-sky-100">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         {/* <nav aria-label="Breadcrumb">
                     <ol className="flex flex-wrap items-center gap-2 text-sm">

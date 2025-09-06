@@ -3,7 +3,6 @@
 
 import "katex/dist/katex.min.css";
 import Link from "next/link";
-import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 
 export default function HomeClient() {
@@ -37,31 +36,6 @@ export default function HomeClient() {
 
   return (
     <>
-      {/* JSON-LD (Website + Organization) */}
-      <Script id="zappy-jsonld" type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "WebSite",
-              name: "Ask Zappy",
-              url: "https://askzappy.com/",
-              potentialAction: {
-                "@type": "SearchAction",
-                target: "https://askzappy.com/search?q={query}",
-                "query-input": "required name=query",
-              },
-            },
-            {
-              "@type": "Organization",
-              name: "Ask Zappy",
-              url: "https://askzappy.com/",
-              logo: "https://askzappy.com/ask-zappy-logo.svg",
-            },
-          ],
-        })}
-      </Script>
-
       <main>
         <section className="relative overflow-hidden bg-sky-50 border-b border-sky-100">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 md:pt-20 pb-10 md:pb-14">

@@ -118,7 +118,7 @@ export default async function QuestionsPage({
 
   return (
     <>
-      <header className="bg-[#e0ecfa]">
+      <header className="bg-sky-50 border-b border-sky-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
           <h1 className="text-[clamp(2.0rem,3vw+1rem,2.5rem)] font-bold tracking-tight">
             Analysis and Approaches {level.toUpperCase()} — Questionbank
