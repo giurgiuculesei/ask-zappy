@@ -1,5 +1,6 @@
 "use client";
 
+import * as ga from "@/lib/ga";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   useCallback,
@@ -66,6 +67,13 @@ export default function Filters({
   // Handlers — update local immediately, then async URL
   const setPaper = useCallback(
     (paper: string) => {
+      ga.event({
+        action: "paper_filter_clicked",
+        params: {
+          new_paper: paper,
+        },
+      });
+
       const next = { ...local, paper };
       setLocal(next);
       scheduleUrlUpdate(next);
@@ -75,6 +83,13 @@ export default function Filters({
 
   const setDifficulty = useCallback(
     (difficulty: string) => {
+      ga.event({
+        action: "difficulty_filter_clicked",
+        params: {
+          new_difficulty: difficulty,
+        },
+      });
+
       const next = { ...local, difficulty };
       setLocal(next);
       scheduleUrlUpdate(next);
@@ -84,6 +99,13 @@ export default function Filters({
 
   const setView = useCallback(
     (view: string) => {
+      ga.event({
+        action: "view_filter_clicked",
+        params: {
+          new_view: view,
+        },
+      });
+
       const next = { ...local, view };
       setLocal(next);
       scheduleUrlUpdate(next);
@@ -103,6 +125,14 @@ export default function Filters({
   const onSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
+
+      ga.event({
+        action: "search_filter_aplied",
+        params: {
+          new_query: local.q.trim(),
+        },
+      });
+
       // trim q before building the query
       const next = { ...local, q: local.q.trim() };
       scheduleUrlUpdate(next); // buildQueryFromObj already strips "all"

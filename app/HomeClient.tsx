@@ -1,6 +1,7 @@
 // app/ib-math/HomeClient.tsx
 "use client";
 
+import * as ga from "@/lib/ga";
 import "katex/dist/katex.min.css";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -48,12 +49,22 @@ export default function HomeClient() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3 ">
               <Link
+                onClick={() =>
+                  ga.event({
+                    action: "home_start_learning_clicked",
+                  })
+                }
                 href="/ib-math/analysis-and-approaches/question-bank/sl/number-and-algebra/all-concepts"
                 className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800"
               >
                 Start learning
               </Link>
               <Link
+                onClick={() =>
+                  ga.event({
+                    action: "home_browse_topics_clicked",
+                  })
+                }
                 href="/ib-math/analysis-and-approaches/question-bank/sl"
                 className="inline-flex items-center gap-2 rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold hover:bg-slate-50"
               >
@@ -127,6 +138,11 @@ export default function HomeClient() {
 
                 <div className="mt-4 grid grid-cols-2 gap-3 text-[15px]">
                   <Link
+                    onClick={() =>
+                      ga.event({
+                        action: "home_aa_sl_clicked",
+                      })
+                    }
                     href="/ib-math/analysis-and-approaches/question-bank/sl"
                     className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-2.5 hover:bg-slate-50"
                   >
@@ -135,6 +151,11 @@ export default function HomeClient() {
                   </Link>
 
                   <Link
+                    onClick={() =>
+                      ga.event({
+                        action: "home_aa_hl_clicked",
+                      })
+                    }
                     href="/ib-math/analysis-and-approaches/question-bank/hl"
                     className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-2.5 hover:bg-slate-50"
                   >
@@ -160,6 +181,11 @@ export default function HomeClient() {
               </div>
 
               <Link
+                onClick={() =>
+                  ga.event({
+                    action: "home_view_all_topics_clicked",
+                  })
+                }
                 href="/ib-math/analysis-and-approaches/question-bank/sl"
                 className="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-indigo-700 hover:text-indigo-800"
               >
@@ -796,12 +822,22 @@ export default function HomeClient() {
               </div>
               <div className="flex md:justify-end gap-3">
                 <Link
+                  onClick={() =>
+                    ga.event({
+                      action: "home_explore_topics_clicked",
+                    })
+                  }
                   href="/ib-math/analysis-and-approaches/question-bank/sl"
                   className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold hover:bg-slate-50"
                 >
                   Explore topics
                 </Link>
                 <Link
+                  onClick={() =>
+                    ga.event({
+                      action: "home_start_free_clicked",
+                    })
+                  }
                   href="/ib-math/analysis-and-approaches/question-bank/sl/number-and-algebra/all-concepts"
                   className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white hover:bg-slate-800"
                 >
