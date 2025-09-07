@@ -1,5 +1,6 @@
 "use client";
 
+import * as ga from "@/lib/ga";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -38,6 +39,13 @@ export default function Topics({
 
   const onChange = (newLevel: Level) => {
     if (newLevel === level) return;
+
+    ga.event({
+      action: "topics_level_clicked",
+      params: {
+        new_level: newLevel,
+      },
+    });
 
     setLevel(newLevel);
 
@@ -166,6 +174,16 @@ export default function Topics({
             </p>
             <div className="mt-auto pt-5">
               <Link
+                onClick={() => {
+                  ga.event({
+                    action: "topics_open_clicked",
+                    params: {
+                      topic: topicLink,
+                      subtopic: subTopic.link,
+                      level: level,
+                    },
+                  });
+                }}
                 href={`/ib-math/analysis-and-approaches/question-bank/${level}/${topicLink}/${subTopic.link}`}
                 className="inline-flex items-center justify-center w-full rounded-full border
                    text-[#1166c3] bg-[#d8edff]  border-[#bfe1ff] hover:bg-[#bfe1ff] 

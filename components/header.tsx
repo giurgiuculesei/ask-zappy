@@ -1,5 +1,6 @@
 "use client";
 
+import * as ga from "@/lib/ga";
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -99,7 +100,12 @@ export default function Header() {
         {/* Brand (closes mobile menu on tap) */}
         <Link
           href="/"
-          onClick={() => setMobileOpen(false)}
+          onClick={() => {
+            setMobileOpen(false);
+            ga.event({
+              action: "home_logo_clicked",
+            });
+          }}
           className="flex items-center gap-2 cursor-pointer"
           aria-label="Ask Zappy home"
         >
@@ -122,7 +128,12 @@ export default function Header() {
             <button
               ref={btnRef}
               type="button"
-              onClick={() => setSubjectsOpen((s) => !s)}
+              onClick={() => {
+                setSubjectsOpen((s) => !s);
+                ga.event({
+                  action: "top_menu_clicked",
+                });
+              }}
               className="inline-flex items-center gap-1 text-[15px] font-semibold text-slate-800 tracking-tight hover:text-slate-900 transition cursor-pointer"
               aria-haspopup="dialog"
               aria-expanded={subjectsOpen}
@@ -197,7 +208,17 @@ export default function Header() {
                                     <Link
                                       href={link.href}
                                       className="inline-flex items-center text-[15px] font-medium text-slate-700 hover:text-slate-900 hover:font-semibold transition cursor-pointer"
-                                      onClick={() => setSubjectsOpen(false)}
+                                      onClick={() => {
+                                        setSubjectsOpen(false);
+                                        ga.event({
+                                          action: "menu_item_clicked",
+                                          params: {
+                                            link: link.label,
+                                            title: col.title,
+                                            subject: current.label,
+                                          },
+                                        });
+                                      }}
                                     >
                                       {link.label}
                                     </Link>
@@ -261,6 +282,11 @@ export default function Header() {
         {/* Right actions */}
         <div className="ml-auto flex items-center gap-3">
           <button
+            onClick={() => {
+              ga.event({
+                action: "account_clicked",
+              });
+            }}
             className="p-2 rounded-lg hover:bg-slate-100"
             aria-label="Account"
           >
@@ -279,7 +305,12 @@ export default function Header() {
           <Link
             href="#"
             className="inline-flex items-center rounded-full bg-violet-600 px-4 py-2 text-white text-sm font-semibold hover:bg-violet-700 transition"
-            onClick={() => setMobileOpen(false)}
+            onClick={() => {
+              setMobileOpen(false);
+              ga.event({
+                action: "try_premium_clicked",
+              });
+            }}
           >
             Try Premium
           </Link>
@@ -305,7 +336,12 @@ function MobileSubjects({
         aria-label="Menu"
         aria-expanded={open}
         aria-controls="mobile-subjects"
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          setOpen(!open);
+          ga.event({
+            action: "mobile_menu_clicked",
+          });
+        }}
       >
         <svg
           className="w-5 h-5"
@@ -367,7 +403,17 @@ function MobileSubjects({
                               key={link.href}
                               href={link.href}
                               className="mt-1 block text-[15px] font-medium text-slate-700 hover:text-slate-900 hover:font-semibold transition"
-                              onClick={() => setOpen(false)}
+                              onClick={() => {
+                                setOpen(false);
+                                ga.event({
+                                  action: "mobile_menu_clicked",
+                                  params: {
+                                    link: link.label,
+                                    title: col.title,
+                                    subject: s.label,
+                                  },
+                                });
+                              }}
                             >
                               {link.label}
                             </Link>

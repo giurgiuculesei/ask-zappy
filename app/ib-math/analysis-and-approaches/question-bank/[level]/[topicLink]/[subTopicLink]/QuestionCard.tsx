@@ -1,5 +1,6 @@
 "use client";
 
+import * as ga from "@/lib/ga";
 import "katex/dist/katex.min.css";
 import { useEffect, useRef, useState } from "react";
 
@@ -174,6 +175,14 @@ export function QuestionCard({ q }: { q: Question }) {
             <div className="flex items-center gap-2 text-slate-400">
               {/* Bookmark */}
               <button
+                onClick={() => {
+                  ga.event({
+                    action: "question_bookmark_clicked",
+                    params: {
+                      question_id: q.id,
+                    },
+                  });
+                }}
                 className="group relative p-1.5 rounded-md hover:bg-slate-100 cursor-pointer"
                 aria-label="Bookmark"
               >
@@ -194,6 +203,14 @@ export function QuestionCard({ q }: { q: Question }) {
 
               {/* Mark as done */}
               <button
+                onClick={() => {
+                  ga.event({
+                    action: "question_mark_clicked",
+                    params: {
+                      question_id: q.id,
+                    },
+                  });
+                }}
                 className="group relative p-1.5 rounded-md hover:bg-slate-100 cursor-pointer"
                 aria-label="Mark as done"
               >
@@ -245,7 +262,16 @@ export function QuestionCard({ q }: { q: Question }) {
           <div className="h-full rounded-2xl border border-slate-200 bg-white shadow-card p-3 flex flex-col gap-2">
             {/* Mark Scheme (light blue) */}
             <button
-              onClick={() => setOpen(true)}
+              onClick={() => {
+                ga.event({
+                  action: "question_mark_scheme_clicked",
+                  params: {
+                    question_id: q.id,
+                  },
+                });
+
+                setOpen(true);
+              }}
               className="w-full block rounded-xl px-3 py-2 text-sm font-medium
                                      text-[#1166c3] bg-[#d8edff]  border-[#bfe1ff] hover:bg-[#bfe1ff] 
 cursor-pointer
@@ -256,6 +282,14 @@ cursor-pointer
 
             {/* Video Solutions (white) */}
             <button
+              onClick={() => {
+                ga.event({
+                  action: "question_video_solutions_clicked",
+                  params: {
+                    question_id: q.id,
+                  },
+                });
+              }}
               id="open-video-solution"
               className="w-full block rounded-xl px-3 py-2 text-sm font-medium
                 text-slate-800 bg-white border border-slate-200 cursor-pointer
