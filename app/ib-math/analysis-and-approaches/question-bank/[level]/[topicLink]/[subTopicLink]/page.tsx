@@ -65,8 +65,6 @@ export async function generateMetadata({
 
   const description = parts.join(" - ");
 
-  console.log("meta", { title, description });
-
   return { title, description };
 }
 
@@ -93,7 +91,6 @@ export default async function QuestionsPage({
 
   /// normalize filters
   const { paper, difficulty, q, cursor } = await searchParams;
-  console.log({ paper, difficulty, q, cursor });
 
   // fetch first page (SSR)
   const { items, nextCursor } = await getQuestionsPage(
