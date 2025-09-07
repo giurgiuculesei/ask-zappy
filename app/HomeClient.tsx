@@ -267,8 +267,8 @@ export default function HomeClient() {
               </Link>
 
               {/* Topic 3 */}
-              <a
-                href="#"
+              <Link
+                href="/ib-math/analysis-and-approaches/question-bank/sl/geometry-and-trigonometry/all-concepts"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow hover:border-indigo-300"
               >
                 <div className="flex items-center justify-between">
@@ -277,7 +277,7 @@ export default function HomeClient() {
                       Topic 3
                     </div>
                     <div className="mt-0.5 text-lg font-semibold">
-                      Geometry &amp; Trigonometry
+                      Geometry and Trigonometry
                     </div>
                   </div>
                   <span className="rounded-full bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1">
@@ -295,11 +295,11 @@ export default function HomeClient() {
                     Triangles
                   </span>
                 </div>
-              </a>
+              </Link>
 
               {/* Topic 4 */}
-              <a
-                href="#"
+              <Link
+                href="/ib-math/analysis-and-approaches/question-bank/sl/statistics-and-probability/all-concepts"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow hover:border-indigo-300"
               >
                 <div className="flex items-center justify-between">
@@ -308,7 +308,7 @@ export default function HomeClient() {
                       Topic 4
                     </div>
                     <div className="mt-0.5 text-lg font-semibold">
-                      Statistics &amp; Probability
+                      Statistics and Probability
                     </div>
                   </div>
                   <span className="rounded-full bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1">
@@ -326,11 +326,11 @@ export default function HomeClient() {
                     Regression
                   </span>
                 </div>
-              </a>
+              </Link>
 
               {/* Topic 5 */}
-              <a
-                href="#"
+              <Link
+                href="/ib-math/analysis-and-approaches/question-bank/sl/calculus/all-concepts"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow hover:border-indigo-300"
               >
                 <div className="flex items-center justify-between">
@@ -355,38 +355,7 @@ export default function HomeClient() {
                     Integration
                   </span>
                 </div>
-              </a>
-
-              {/* Topic 6 */}
-              <a
-                href="#"
-                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow hover:border-indigo-300"
-              >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-xs font-semibold text-slate-500">
-                      Topic 6
-                    </div>
-                    <div className="mt-0.5 text-lg font-semibold">
-                      Exploration (IA)
-                    </div>
-                  </div>
-                  <span className="rounded-full bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1">
-                    Guides
-                  </span>
-                </div>
-                <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
-                  <span className="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1">
-                    Choosing a topic
-                  </span>
-                  <span className="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1">
-                    Structure
-                  </span>
-                  <span className="rounded-full bg-slate-50 border border-slate-200 px-2.5 py-1">
-                    Assessment
-                  </span>
-                </div>
-              </a>
+              </Link>
             </div>
           </div>
         </section>
