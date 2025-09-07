@@ -189,7 +189,7 @@ export default function Topics({
                    text-[#1166c3] bg-[#d8edff]  border-[#bfe1ff] hover:bg-[#bfe1ff] 
                  px-4 py-2.5 text-sm font-medium"
               >
-                Open Study
+                Open Questions
               </Link>
             </div>
           </article>
