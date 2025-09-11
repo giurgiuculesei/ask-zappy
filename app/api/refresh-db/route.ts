@@ -1,6 +1,6 @@
 import { refreshDB } from "@/lib/ib-math/refreshDB";
 
-export async function GET() {
+export async function POST() {
   await refreshDB().catch((err) => {
     console.error("Error refreshing DB:", err);
   });
