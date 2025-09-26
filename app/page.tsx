@@ -8,7 +8,8 @@ export const dynamic = "force-static"; // Opt into static rendering
 export const metadata: Metadata = {
   metadataBase: new URL("https://ask-zappy.com"),
   title: "IB Math - Ask Zappy",
-  description: "Home for IB Mathematics (AA & AI • SL/HL).",
+  description:
+    "Structured IB Math help: clear notes, targeted practice, and friendly support. Explore topics, lessons, and tips designed for faster progress.",
   keywords: [
     "IB Math",
     "IB Mathematics",
