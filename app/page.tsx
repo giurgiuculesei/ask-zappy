@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://ask-zappy.com"),
   title: "IB Math - Ask Zappy",
   description:
-    "Structured IB Math help: clear notes, targeted practice, and friendly support. Explore topics, lessons, and tips designed for faster progress.",
+    "Clear IB Math (AA & AI, SL/HL) explanations, targeted practice, and step-by-step solutions built for faster progress. Explore topics and train with real exam-style questions.",
   keywords: [
     "IB Math",
     "IB Mathematics",
